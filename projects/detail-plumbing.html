@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Detail Plumbing ~ Arviixzuh // Dossier</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  const c = (n) => `rgb(var(--${n}) / <alpha-value>)`
+  tailwind.config = {
+    darkMode: 'class',
+    theme: { extend: {
+      colors: {
+        void: c('void'), panel: c('panel'), card: c('card'), chip: c('chip'), chiphi: c('chip-hi'),
+        reiHair: c('hair'), reiLight: c('ink'), reiPupil: c('blood'), bloodDeep: c('blood-deep'), bloodMid: c('blood-mid'),
+        mlpPink: c('bruise'), bruiseDeep: c('bruise-deep'), bruiseMid: c('bruise-mid'),
+        wiredGreen: c('sick'), dim: c('dim'), line: c('line'),
+      },
+      fontFamily: {
+        mono: ['Courier New', 'VT323', 'monospace'],
+        sans: ['Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+        pixel: ['Comic Sans MS', 'Trebuchet MS', 'sans-serif'],
+      },
+    } },
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@800&display=swap" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+  :root {
+    --void: 10 8 9; --panel: 15 11 12; --card: 24 18 20; --chip: 42 32 36; --chip-hi: 74 58 64;
+    --ink: 201 207 196; --dim: 140 134 128; --line: 70 60 62; --hair: 138 165 160;
+    --blood: 212 42 69; --blood-deep: 74 14 23; --blood-mid: 128 27 42;
+    --bruise: 184 122 140; --bruise-deep: 58 31 40; --bruise-mid: 92 48 64; --sick: 159 184 74;
+  }
+  [data-theme="lain"] {
+    --void: 11 14 25; --panel: 11 15 29; --card: 16 22 42; --chip: 26 37 72; --chip-hi: 39 59 122;
+    --ink: 208 225 255; --dim: 156 163 175; --line: 55 65 81; --hair: 160 196 255;
+    --blood: 255 77 109; --blood-deep: 74 14 23; --blood-mid: 128 27 42;
+    --bruise: 255 179 222; --bruise-deep: 74 25 55; --bruise-mid: 122 43 93; --sick: 80 250 123;
+  }
+  body {
+    background-color: rgb(var(--void));
+    background-image:
+      linear-gradient(rgb(var(--hair) / .08) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--hair) / .08) 1px, transparent 1px);
+    background-size: 20px 20px; color: rgb(var(--ink)); font-family: 'Tahoma', sans-serif;
+  }
+  .scanlines::before {
+    content: ' '; display: block; position: fixed; inset: 0; z-index: 99; pointer-events: none;
+    background: linear-gradient(rgb(18 16 16 / 0) 50%, rgb(0 0 0 / .35) 50%); background-size: 100% 3px; opacity: .6;
+  }
+  .web-box { background-color: rgb(var(--card)); border: 2px solid rgb(var(--hair)); box-shadow: 3px 3px 0 rgb(var(--blood) / .25); border-radius: 4px; }
+  .web-box-header {
+    background: linear-gradient(90deg, rgb(var(--chip)), rgb(var(--chip-hi)));
+    border-bottom: 1px solid rgb(var(--hair)); color: rgb(var(--ink));
+    font-size: 13px; font-weight: bold; padding: 4px 10px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .web-box-header-nerv { background: linear-gradient(90deg, rgb(var(--blood-deep)), rgb(var(--blood-mid))); border-bottom: 1px solid rgb(var(--blood)); }
+  .web-box-header-mlp { background: linear-gradient(90deg, rgb(var(--bruise-deep)), rgb(var(--bruise-mid))); border-bottom: 1px solid rgb(var(--bruise)); }
+  .badge-8831 {
+    width: 88px; height: 31px; font-size: 9px; font-family: monospace; font-weight: bold;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid rgb(var(--hair)); background-color: rgb(var(--panel)); color: rgb(var(--ink)); text-align: center; text-transform: uppercase;
+  }
+  .psych-scribble { font-family: 'Comic Sans MS', cursive, sans-serif; transform: rotate(-1deg); }
+  @keyframes marquee { 0% { transform: translateX(0) } 100% { transform: translateX(-50%) } }
+  .animate-marquee { display: inline-flex; white-space: nowrap; will-change: transform; animation: marquee 40s linear infinite; }
+  .animate-marquee > span { padding-right: 3rem; }
+  ::-webkit-scrollbar { width: 10px; background: rgb(var(--panel)); }
+  ::-webkit-scrollbar-thumb { background: rgb(var(--hair)); border: 1px solid rgb(var(--void)); }
+  .job ul { list-style: none; }
+  .job li { position: relative; padding-left: 12px; margin-top: 3px; }
+  .job li::before { content: '▸'; position: absolute; left: 0; color: rgb(var(--blood)); }
+
+  section .web-box .bg-card { transition: border-color .2s, box-shadow .2s, transform .2s; }
+  section .web-box .bg-card:hover {
+    border-color: rgb(var(--blood)) !important;
+    box-shadow: 0 0 0 1px rgb(var(--blood) / .6), 0 0 14px rgb(var(--blood) / .35), 3px 3px 0 rgb(var(--bruise) / .4);
+    transform: translateY(-2px);
+  }
+
+  .name-glitch {
+    font-family: 'Shippori Mincho B1', 'Hiragino Mincho ProN', 'Yu Mincho', 'Times New Roman', serif; font-weight: 800;
+    font-size: 2.5rem; line-height: 1.05; letter-spacing: -.02em;
+    color: rgb(var(--ink)); display: inline-block;
+    transform: scaleX(.92); transform-origin: left center;
+    text-shadow: 2px 2px 0 rgb(var(--blood-mid)), 0 0 1px rgb(var(--ink) / .6);
+  }
+  @media (min-width: 640px) { .name-glitch { font-size: 3.25rem; } }
+</style>
+<style>
+  html[data-lang=es] .en, html[data-lang=en] .es { display: none; }
+  .lang-btn.active { background: rgb(var(--hair)); color: #000; }
+  .job li { font-family: Tahoma, sans-serif; font-size: 14px; }
+</style>
+</head>
+<body class="scanlines min-h-screen flex flex-col p-2 sm:p-4 selection:bg-reiHair selection:text-black">
+<header class="max-w-7xl w-full mx-auto mb-4 web-box overflow-hidden">
+  <div class="bg-black border-b border-reiHair text-reiHair text-[13px] font-mono py-1 px-4 flex justify-between"><a href="../index.html" class="hover:text-reiLight">◀ BACK TO INDEX</a><span>DOSSIER // DETAIL-PLUMBING</span></div>
+  <div class="p-4 bg-gradient-to-r from-void via-chip to-void flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div><h1 class="flex items-center gap-2"><span class="name-glitch">Detail Plumbing</span></h1><p class="text-sm text-reiLight font-mono mt-1">Abr 2024 - Feb 2025</p></div>
+    <div class="flex gap-2 font-mono text-sm"><button onclick="setLang('en')" id="b-en" class="lang-btn bg-chip border border-reiHair px-3 py-1.5 rounded text-reiLight">EN</button><button onclick="setLang('es')" id="b-es" class="lang-btn bg-chip border border-reiHair px-3 py-1.5 rounded text-reiLight">ES</button></div>
+  </div>
+</header>
+<main class="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 flex-grow">
+  <aside class="lg:col-span-3 space-y-4">
+    <div class="web-box"><div class="web-box-header "><span>~ LINKS ~</span></div><div class="p-3 bg-panel text-sm font-mono"><div class="space-y-2"><div class="text-dim text-[13px]"><span class="en">Private / confidential project.</span><span class="es">Proyecto privado / confidencial.</span></div></div></div></div>
+    <div class="web-box"><div class="web-box-header "><span>~ TECHNOLOGIES ~</span></div><div class="p-3 bg-panel text-sm font-mono"><div class="flex flex-wrap gap-1"><span class="bg-chip text-reiLight px-2 py-0.5 border border-line text-[13px]">Redux</span><span class="bg-chip text-reiLight px-2 py-0.5 border border-line text-[13px]">React</span><span class="bg-chip text-reiLight px-2 py-0.5 border border-line text-[13px]">TypeScript</span><span class="bg-chip text-reiLight px-2 py-0.5 border border-line text-[13px]">TailwindCSS</span><span class="bg-chip text-reiLight px-2 py-0.5 border border-line text-[13px]">MySQL</span><span class="bg-chip text-reiLight px-2 py-0.5 border border-line text-[13px]">NestJS</span><span class="bg-chip text-reiLight px-2 py-0.5 border border-line text-[13px]">Prisma</span></div></div></div>
+  </aside>
+  <section class="lg:col-span-9 space-y-4">
+    <div class="web-box"><div class="web-box-header "><span>~ OVERVIEW ~</span></div><div class="p-3 bg-panel text-sm font-mono"><p class="font-sans leading-relaxed text-reiLight"><span class="en">ERP platform designed to generate accurate estimates and work directly on PDF blueprints, streamlining budgeting and collaboration workflows.</span><span class="es">Plataforma ERP para realizar estimaciones precisas y trabajar sobre planos PDF, optimizando el flujo de presupuestado y colaboración.</span></p></div></div>
+    <div class="web-box"><div class="web-box-header web-box-header-mlp"><span>~ PLANNING ~</span></div><div class="p-3 bg-panel text-sm font-mono"><p class="font-sans leading-relaxed text-reiLight/90"><span class="en">Development guided by interviews with sector professionals to identify budgeting and measurement needs.</span><span class="es">Desarrollo guiado por entrevistas a profesionales del sector para identificar necesidades de presupuestado y medición sobre planos.</span></p></div></div>
+    <div class="web-box"><div class="web-box-header web-box-header-nerv"><span>~ FEATURES ~</span></div><div class="p-3 bg-panel text-sm font-mono"><div class="job"><ul class="text-reiLight/90"><li><span class="en">PDF viewing and tracing tools to measure distances, areas and elements directly on documents.</span><span class="es">Visualización y trazado en PDF para medir distancias, áreas y elementos directamente en los documentos.</span></li><li><span class="en">Estimation management converting measurements into detailed bills of materials, time and costs.</span><span class="es">Gestión de estimaciones que convierte mediciones en presupuestos detallados de materiales, tiempo y costos.</span></li><li><span class="en">User and role control with permissions according to function.</span><span class="es">Control de usuarios y roles con permisos según función.</span></li><li><span class="en">Project history and versioning with change logs per user and budget revisions.</span><span class="es">Historial de proyectos y versiones con registro de cambios por usuario y revisiones de presupuestos.</span></li></ul></div></div></div>
+    <div class="web-box"><div class="web-box-header "><span>~ IMPACT ~</span></div><div class="p-3 bg-panel text-sm font-mono"><p class="font-sans leading-relaxed text-reiLight"><span class="en">Improved accuracy and speed for creating estimates, reduced error margin and clear traceability across project lifecycle.</span><span class="es">Mejora en precisión y velocidad para generar presupuestos, menor margen de error y trazabilidad clara en el ciclo de vida del proyecto.</span></p></div></div>
+    <div class="web-box"><div class="web-box-header "><span>~ GALLERY ~</span></div><div class="p-3 bg-panel text-sm font-mono"><div class="grid grid-cols-2 sm:grid-cols-3 gap-2"><div><img src="../assets/img/gallery/DetailPlumbing/DetailPlumbing_1.png" loading="lazy" alt="Detail Plumbing 1" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/DetailPlumbing/DetailPlumbing_2.png" loading="lazy" alt="Detail Plumbing 2" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/DetailPlumbing/DetailPlumbing_3.png" loading="lazy" alt="Detail Plumbing 3" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/DetailPlumbing/DetailPlumbing_4.png" loading="lazy" alt="Detail Plumbing 4" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/DetailPlumbing/DetailPlumbing_5.png" loading="lazy" alt="Detail Plumbing 5" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/DetailPlumbing/DetailPlumbing_6.png" loading="lazy" alt="Detail Plumbing 6" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/DetailPlumbing/DetailPlumbing_7.png" loading="lazy" alt="Detail Plumbing 7" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/DetailPlumbing/DetailPlumbing_8.png" loading="lazy" alt="Detail Plumbing 8" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/DetailPlumbing/DetailPlumbing_9.png" loading="lazy" alt="Detail Plumbing 9" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/DetailPlumbing/DetailPlumbing_10.png" loading="lazy" alt="Detail Plumbing 10" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/DetailPlumbing/DetailPlumbing_11.png" loading="lazy" alt="Detail Plumbing 11" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/DetailPlumbing/DetailPlumbing_12.png" loading="lazy" alt="Detail Plumbing 12" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/DetailPlumbing/DetailPlumbing_13.png" loading="lazy" alt="Detail Plumbing 13" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/DetailPlumbing/DetailPlumbing_14.png" loading="lazy" alt="Detail Plumbing 14" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/DetailPlumbing/DetailPlumbing_15.png" loading="lazy" alt="Detail Plumbing 15" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div></div></div></div>
+    <div class="flex flex-wrap gap-2 items-center"><span class="font-mono text-sm text-dim">OTHER DOSSIERS:</span><a href="gestini.html" class="px-2 py-1 bg-card border border-reiHair hover:bg-reiHair hover:text-black font-mono text-sm">Gestini</a><a href="detail-plumbing.html" class="px-2 py-1 bg-card border border-reiPupil text-reiPupil font-mono text-sm">Detail Plumbing</a><a href="marvig.html" class="px-2 py-1 bg-card border border-reiHair hover:bg-reiHair hover:text-black font-mono text-sm">Marvig</a><a href="litium.html" class="px-2 py-1 bg-card border border-reiHair hover:bg-reiHair hover:text-black font-mono text-sm">Litium</a><a href="vitalcare.html" class="px-2 py-1 bg-card border border-reiHair hover:bg-reiHair hover:text-black font-mono text-sm">Vitalcare</a></div>
+  </section>
+</main>
+<div id="lb" style="display:none" class="fixed inset-0 z-[100] bg-black/90 items-center justify-center p-4 cursor-pointer" onclick="this.style.display='none'"><img id="lbimg" class="max-w-full max-h-full border-2 border-reiHair" alt="" /></div>
+<footer class="max-w-7xl w-full mx-auto mt-4 web-box p-2 text-center text-sm font-mono text-reiLight">Victor Pandolfi · Arviixzuh Portfolio © 2026</footer>
+<script>
+  function setLang(l){ document.documentElement.setAttribute('data-lang', l); try{localStorage.setItem('lang', l)}catch(e){}
+    document.getElementById('b-en').classList.toggle('active', l==='en'); document.getElementById('b-es').classList.toggle('active', l==='es'); }
+  function openImg(src){ document.getElementById('lbimg').src = src; document.getElementById('lb').style.display = 'flex'; }
+  document.addEventListener('keydown', e => { if(e.key==='Escape') document.getElementById('lb').style.display='none' });
+  let l='en'; try{ l = localStorage.getItem('lang') || 'en' }catch(e){} setLang(l);
+</script>
+</body>
+</html>
