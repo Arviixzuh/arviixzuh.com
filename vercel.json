@@ -1,8 +1,10 @@
 {
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/"
-    }
+    { "source": "/projects/gestini", "destination": "/projects/gestini.html" },
+    { "source": "/projects/detail-plumbing", "destination": "/projects/detail-plumbing.html" },
+    { "source": "/projects/marvig", "destination": "/projects/marvig.html" },
+    { "source": "/projects/litium", "destination": "/projects/litium.html" },
+    { "source": "/projects/vitalcare", "destination": "/projects/vitalcare.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
