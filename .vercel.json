@@ -1,15 +1,6 @@
 {
-  "cleanUrls": true,
-  "redirects": [
-    {
-      "source": "/projects/((?!gestini|detail-plumbing|marvig|litium|vitalcare).*)",
-      "destination": "/",
-      "permanent": false
-    },
-    {
-      "source": "/((?!projects|assets|favicon).+)",
-      "destination": "/",
-      "permanent": false
-    }
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "status": 302, "headers": { "Location": "/" } }
   ]
 }
