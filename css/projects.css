@@ -1,0 +1,230 @@
+:root {
+  --void: 10 8 9;
+  --panel: 15 11 12;
+  --card: 24 18 20;
+  --chip: 42 32 36;
+  --chip-hi: 74 58 64;
+  --ink: 201 207 196;
+  --dim: 140 134 128;
+  --line: 70 60 62;
+  --hair: 138 165 160;
+  --blood: 212 42 69;
+  --blood-deep: 74 14 23;
+  --blood-mid: 128 27 42;
+  --bruise: 184 122 140;
+  --bruise-deep: 58 31 40;
+  --bruise-mid: 92 48 64;
+  --sick: 159 184 74;
+}
+[data-theme='lain'] {
+  --void: 11 14 25;
+  --panel: 11 15 29;
+  --card: 16 22 42;
+  --chip: 26 37 72;
+  --chip-hi: 39 59 122;
+  --ink: 208 225 255;
+  --dim: 156 163 175;
+  --line: 55 65 81;
+  --hair: 160 196 255;
+  --blood: 255 77 109;
+  --blood-deep: 74 14 23;
+  --blood-mid: 128 27 42;
+  --bruise: 255 179 222;
+  --bruise-deep: 74 25 55;
+  --bruise-mid: 122 43 93;
+  --sick: 80 250 123;
+}
+body {
+  animation: grid-drift 12s linear infinite;
+  background-color: rgb(var(--void));
+  background-image:
+    linear-gradient(rgb(var(--hair) / 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--hair) / 0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+  color: rgb(var(--ink));
+  font-family: 'Tahoma', sans-serif;
+}
+
+@keyframes grid-drift {
+  from {
+    background-position:
+      0 0,
+      0 0;
+  }
+  to {
+    background-position:
+      20px 20px,
+      20px 20px;
+  }
+}
+html::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 20% 15%, rgb(var(--hair) / 0.1), transparent 55%),
+    radial-gradient(ellipse at 80% 85%, rgb(var(--blood) / 0.1), transparent 55%);
+  animation: bg-breathe 9s ease-in-out infinite alternate;
+}
+@keyframes bg-breathe {
+  from {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body,
+  html::before {
+    animation: none !important;
+  }
+}
+.scanlines::before {
+  content: ' ';
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  pointer-events: none;
+  background: linear-gradient(rgb(18 16 16 / 0) 50%, rgb(0 0 0 / 0.35) 50%);
+  background-size: 100% 3px;
+  opacity: 0.6;
+}
+.web-box {
+  background-color: rgb(var(--card));
+  border: 2px solid rgb(var(--hair));
+  box-shadow: 3px 3px 0 rgb(var(--blood) / 0.25);
+  border-radius: 4px;
+}
+.web-box-header {
+  background: linear-gradient(90deg, rgb(var(--chip)), rgb(var(--chip-hi)));
+  border-bottom: 1px solid rgb(var(--hair));
+  color: rgb(var(--ink));
+  font-size: 13px;
+  font-weight: bold;
+  padding: 4px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.web-box-header-nerv {
+  background: linear-gradient(90deg, rgb(var(--blood-deep)), rgb(var(--blood-mid)));
+  border-bottom: 1px solid rgb(var(--blood));
+}
+.web-box-header-mlp {
+  background: linear-gradient(90deg, rgb(var(--bruise-deep)), rgb(var(--bruise-mid)));
+  border-bottom: 1px solid rgb(var(--bruise));
+}
+.badge-8831 {
+  width: 88px;
+  height: 31px;
+  font-size: 9px;
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(var(--hair));
+  background-color: rgb(var(--panel));
+  color: rgb(var(--ink));
+  text-align: center;
+  text-transform: uppercase;
+}
+.psych-scribble {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  transform: rotate(-1deg);
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  display: inline-flex;
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee 40s linear infinite;
+}
+.animate-marquee > span {
+  padding-right: 3rem;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  background: rgb(var(--panel));
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--hair));
+  border: 1px solid rgb(var(--void));
+}
+.job ul {
+  list-style: none;
+}
+.job li {
+  position: relative;
+  padding-left: 12px;
+  margin-top: 3px;
+}
+.job li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: rgb(var(--blood));
+}
+
+section .web-box .bg-card {
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+section .web-box .bg-card:hover {
+  border-color: rgb(var(--blood)) !important;
+  box-shadow:
+    0 0 0 1px rgb(var(--blood) / 0.6),
+    0 0 14px rgb(var(--blood) / 0.35),
+    3px 3px 0 rgb(var(--bruise) / 0.4);
+  transform: translateY(-2px);
+}
+
+.name-glitch {
+  font-family: 'Shippori Mincho B1', 'Hiragino Mincho ProN', 'Yu Mincho', 'Times New Roman', serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: rgb(var(--ink));
+  display: inline-block;
+  transform: scaleX(0.92);
+  transform-origin: left center;
+  text-shadow:
+    2px 2px 0 rgb(var(--blood-mid)),
+    0 0 1px rgb(var(--ink) / 0.6);
+}
+@media (min-width: 640px) {
+  .name-glitch {
+    font-size: 3.25rem;
+  }
+}
+
+.card-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+section .bg-card:has(.card-link) {
+  position: relative;
+  cursor: pointer;
+}
+.job li {
+  font-family: Tahoma, sans-serif;
+  font-size: 14px;
+}

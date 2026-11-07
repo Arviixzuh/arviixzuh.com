@@ -1,139 +1,121 @@
 <!doctype html>
 <html lang="en" class="dark">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="google" content="notranslate" />
-<title>Litium ~ Arviixzuh</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  const c = (n) => `rgb(var(--${n}) / <alpha-value>)`
-  tailwind.config = {
-    darkMode: 'class',
-    theme: { extend: {
-      colors: {
-        void: c('void'), panel: c('panel'), card: c('card'), chip: c('chip'), chiphi: c('chip-hi'),
-        reiHair: c('hair'), reiLight: c('ink'), reiPupil: c('blood'), bloodDeep: c('blood-deep'), bloodMid: c('blood-mid'),
-        mlpPink: c('bruise'), bruiseDeep: c('bruise-deep'), bruiseMid: c('bruise-mid'),
-        wiredGreen: c('sick'), dim: c('dim'), line: c('line'),
-      },
-      fontFamily: {
-        mono: ['Courier New', 'VT323', 'monospace'],
-        sans: ['Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
-        pixel: ['Comic Sans MS', 'Trebuchet MS', 'sans-serif'],
-      },
-    } },
-  }
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@800&display=swap" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-<style>
-  :root {
-    --void: 10 8 9; --panel: 15 11 12; --card: 24 18 20; --chip: 42 32 36; --chip-hi: 74 58 64;
-    --ink: 201 207 196; --dim: 140 134 128; --line: 70 60 62; --hair: 138 165 160;
-    --blood: 212 42 69; --blood-deep: 74 14 23; --blood-mid: 128 27 42;
-    --bruise: 184 122 140; --bruise-deep: 58 31 40; --bruise-mid: 92 48 64; --sick: 159 184 74;
-  }
-  [data-theme="lain"] {
-    --void: 11 14 25; --panel: 11 15 29; --card: 16 22 42; --chip: 26 37 72; --chip-hi: 39 59 122;
-    --ink: 208 225 255; --dim: 156 163 175; --line: 55 65 81; --hair: 160 196 255;
-    --blood: 255 77 109; --blood-deep: 74 14 23; --blood-mid: 128 27 42;
-    --bruise: 255 179 222; --bruise-deep: 74 25 55; --bruise-mid: 122 43 93; --sick: 80 250 123;
-  }
-  body {
-    animation: grid-drift 12s linear infinite;
-    background-color: rgb(var(--void));
-    background-image:
-      linear-gradient(rgb(var(--hair) / .08) 1px, transparent 1px),
-      linear-gradient(90deg, rgb(var(--hair) / .08) 1px, transparent 1px);
-    background-size: 20px 20px; color: rgb(var(--ink)); font-family: 'Tahoma', sans-serif;
-  }
-  @keyframes grid-drift { from { background-position: 0 0, 0 0 } to { background-position: 20px 20px, 20px 20px } }
-  html::before { content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
-    background: radial-gradient(ellipse at 20% 15%, rgb(var(--hair) / .10), transparent 55%), radial-gradient(ellipse at 80% 85%, rgb(var(--blood) / .10), transparent 55%);
-    animation: bg-breathe 9s ease-in-out infinite alternate; }
-  @keyframes bg-breathe { from { opacity:.35; transform: scale(1) } to { opacity:1; transform: scale(1.08) } }
-  .scanlines::before {
-    content: ' '; display: block; position: fixed; inset: 0; z-index: 99; pointer-events: none;
-    background: linear-gradient(rgb(18 16 16 / 0) 50%, rgb(0 0 0 / .35) 50%); background-size: 100% 3px; opacity: .6;
-  }
-  .scanlines::before {
-    content: ' '; display: block; position: fixed; inset: 0; z-index: 99; pointer-events: none;
-    background: linear-gradient(rgb(18 16 16 / 0) 50%, rgb(0 0 0 / .35) 50%); background-size: 100% 3px; opacity: .6;
-  }
-  .web-box { background-color: rgb(var(--card)); border: 2px solid rgb(var(--hair)); box-shadow: 3px 3px 0 rgb(var(--blood) / .25); border-radius: 4px; }
-  .web-box-header {
-    background: linear-gradient(90deg, rgb(var(--chip)), rgb(var(--chip-hi)));
-    border-bottom: 1px solid rgb(var(--hair)); color: rgb(var(--ink));
-    font-size: 13px; font-weight: bold; padding: 4px 10px; display: flex; justify-content: space-between; align-items: center;
-  }
-  .web-box-header-nerv { background: linear-gradient(90deg, rgb(var(--blood-deep)), rgb(var(--blood-mid))); border-bottom: 1px solid rgb(var(--blood)); }
-  .web-box-header-mlp { background: linear-gradient(90deg, rgb(var(--bruise-deep)), rgb(var(--bruise-mid))); border-bottom: 1px solid rgb(var(--bruise)); }
-  .badge-8831 {
-    width: 88px; height: 31px; font-size: 9px; font-family: monospace; font-weight: bold;
-    display: inline-flex; align-items: center; justify-content: center;
-    border: 1px solid rgb(var(--hair)); background-color: rgb(var(--panel)); color: rgb(var(--ink)); text-align: center; text-transform: uppercase;
-  }
-  .psych-scribble { font-family: 'Comic Sans MS', cursive, sans-serif; transform: rotate(-1deg); }
-  @keyframes marquee { 0% { transform: translateX(0) } 100% { transform: translateX(-50%) } }
-  .animate-marquee { display: inline-flex; white-space: nowrap; will-change: transform; animation: marquee 40s linear infinite; }
-  .animate-marquee > span { padding-right: 3rem; }
-  ::-webkit-scrollbar { width: 10px; background: rgb(var(--panel)); }
-  ::-webkit-scrollbar-thumb { background: rgb(var(--hair)); border: 1px solid rgb(var(--void)); }
-  .job ul { list-style: none; }
-  .job li { position: relative; padding-left: 12px; margin-top: 3px; }
-  .job li::before { content: '▸'; position: absolute; left: 0; color: rgb(var(--blood)); }
-
-  section .web-box .bg-card { transition: border-color .2s, box-shadow .2s, transform .2s; }
-  section .web-box .bg-card:hover {
-    border-color: rgb(var(--blood)) !important;
-    box-shadow: 0 0 0 1px rgb(var(--blood) / .6), 0 0 14px rgb(var(--blood) / .35), 3px 3px 0 rgb(var(--bruise) / .4);
-    transform: translateY(-2px);
-  }
-
-  .name-glitch {
-    font-family: 'Shippori Mincho B1', 'Hiragino Mincho ProN', 'Yu Mincho', 'Times New Roman', serif; font-weight: 800;
-    font-size: 2.5rem; line-height: 1.05; letter-spacing: -.02em;
-    color: rgb(var(--ink)); display: inline-block;
-    transform: scaleX(.92); transform-origin: left center;
-    text-shadow: 2px 2px 0 rgb(var(--blood-mid)), 0 0 1px rgb(var(--ink) / .6);
-  }
-  @media (min-width: 640px) { .name-glitch { font-size: 3.25rem; } }
-
-  .card-link::after { content: ''; position: absolute; inset: 0; }
-  section .bg-card:has(.card-link) { position: relative; cursor: pointer; }
-</style>
-<style>
-  .job li { font-family: Tahoma, sans-serif; font-size: 14px; }
-</style>
-</head>
-<body class="scanlines min-h-screen flex flex-col p-2 sm:p-4 selection:bg-reiHair selection:text-black">
-<header class="max-w-7xl w-full mx-auto mb-4 web-box overflow-hidden">
-  <div class="bg-black border-b border-reiHair text-reiHair text-[13px] font-mono py-1 px-4 flex justify-between"><a href="../index.html" class="hover:text-reiLight">◀ BACK TO INDEX</a><span>DOSSIER // LITIUM</span></div>
-  <div class="p-4 bg-gradient-to-r from-void via-chip to-void flex flex-col sm:flex-row items-center justify-between gap-4">
-    <div><h1 class="flex items-center gap-2"><span class="name-glitch">Litium</span></h1><p class="text-sm text-reiLight font-mono mt-1">Jul 2025 - Feb 2026</p></div>
-  </div>
-</header>
-<main class="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 flex-grow">
-  <aside class="lg:col-span-3 space-y-4">
-    <div class="web-box"><div class="web-box-header "><span>~ LINKS ~</span></div><div class="p-3 bg-panel text-sm font-mono"><div class="space-y-2"><a href="https://github.com/Arviixzuhs/Litium" target="_blank" rel="noopener" class="flex items-center justify-between p-1.5 bg-card border border-reiHair hover:bg-reiHair hover:text-black transition-all"><span><i class="fa-brands fa-github"></i> Source code</span><i class="fa-solid fa-arrow-up-right-from-square text-[13px]"></i></a></div></div></div>
-    <div class="web-box"><div class="web-box-header "><span>~ TECHNOLOGIES ~</span></div><div class="p-3 bg-panel text-sm font-mono"><div class="flex flex-wrap gap-1"><span class="bg-chip text-reiLight px-2 py-0.5 border border-line text-[13px]">Redux</span><span class="bg-chip text-reiLight px-2 py-0.5 border border-line text-[13px]">React</span><span class="bg-chip text-reiLight px-2 py-0.5 border border-line text-[13px]">TailwindCSS</span><span class="bg-chip text-reiLight px-2 py-0.5 border border-line text-[13px]">MySQL</span><span class="bg-chip text-reiLight px-2 py-0.5 border border-line text-[13px]">NestJS</span><span class="bg-chip text-reiLight px-2 py-0.5 border border-line text-[13px]">Prisma</span><span class="bg-chip text-reiLight px-2 py-0.5 border border-line text-[13px]">TypeScript</span><span class="bg-chip text-reiLight px-2 py-0.5 border border-line text-[13px]">Socket.io</span></div></div></div>
-  </aside>
-  <section class="lg:col-span-9 space-y-4">
-    <div class="web-box"><div class="web-box-header "><span>~ OVERVIEW ~</span></div><div class="p-3 bg-panel text-sm font-mono"><p class="font-sans leading-relaxed text-reiLight">Web e-commerce system for Litium C.A., centralizing inventory management and digitalizing appliance sales.</p></div></div>
-    <div class="web-box"><div class="web-box-header web-box-header-mlp"><span>~ PLANNING ~</span></div><div class="p-3 bg-panel text-sm font-mono"><p class="font-sans leading-relaxed text-reiLight/90">Requirement analysis with the company; SCRUM methodology to prioritize critical features.</p></div></div>
-    <div class="web-box"><div class="web-box-header web-box-header-nerv"><span>~ FEATURES ~</span></div><div class="p-3 bg-panel text-sm font-mono"><div class="job"><ul class="text-reiLight/90"><li>Dynamic catalog with detailed specifications and categories.</li><li>Shopping cart and reservation system with flexible payment options.</li><li>CRM and interaction via direct chat and community comments.</li><li>Admin panel for stock control and sales reporting.</li></ul></div></div></div>
-    <div class="web-box"><div class="web-box-header "><span>~ IMPACT ~</span></div><div class="p-3 bg-panel text-sm font-mono"><p class="font-sans leading-relaxed text-reiLight">Automated manual processes, extended reach nationally, reduced response times and improved transaction accuracy.</p></div></div>
-    <div class="web-box"><div class="web-box-header "><span>~ GALLERY ~</span></div><div class="p-3 bg-panel text-sm font-mono"><div class="grid grid-cols-2 sm:grid-cols-3 gap-2"><div><img src="../assets/img/gallery/Litium/Litium_1.png" loading="lazy" alt="Litium 1" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/Litium/Litium_2.png" loading="lazy" alt="Litium 2" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/Litium/Litium_3.png" loading="lazy" alt="Litium 3" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/Litium/Litium_4.png" loading="lazy" alt="Litium 4" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/Litium/Litium_5.png" loading="lazy" alt="Litium 5" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/Litium/Litium_6.png" loading="lazy" alt="Litium 6" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/Litium/Litium_7.png" loading="lazy" alt="Litium 7" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/Litium/Litium_8.png" loading="lazy" alt="Litium 8" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/Litium/Litium_9.png" loading="lazy" alt="Litium 9" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/Litium/Litium_10.png" loading="lazy" alt="Litium 10" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/Litium/Litium_11.png" loading="lazy" alt="Litium 11" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/Litium/Litium_12.png" loading="lazy" alt="Litium 12" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/Litium/Litium_13.png" loading="lazy" alt="Litium 13" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/Litium/Litium_14.png" loading="lazy" alt="Litium 14" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div><div><img src="../assets/img/gallery/Litium/Litium_15.png" loading="lazy" alt="Litium 15" onerror="this.parentElement.remove()" onclick="openImg(this.src)" class="w-full aspect-video object-cover border border-line hover:border-reiPupil cursor-pointer transition-all" /></div></div></div></div>
-    <div class="flex flex-wrap gap-2 items-center"><span class="font-mono text-sm text-dim">OTHER DOSSIERS:</span><a href="gestini.html" class="px-2 py-1 bg-card border border-reiHair hover:bg-reiHair hover:text-black font-mono text-sm">Gestini</a><a href="detail-plumbing.html" class="px-2 py-1 bg-card border border-reiHair hover:bg-reiHair hover:text-black font-mono text-sm">Detail Plumbing</a><a href="marvig.html" class="px-2 py-1 bg-card border border-reiHair hover:bg-reiHair hover:text-black font-mono text-sm">Marvig</a><a href="litium.html" class="px-2 py-1 bg-card border border-reiPupil text-reiPupil font-mono text-sm">Litium</a><a href="vitalcare.html" class="px-2 py-1 bg-card border border-reiHair hover:bg-reiHair hover:text-black font-mono text-sm">Vitalcare</a></div>
-  </section>
-</main>
-<div id="lb" style="display:none" class="fixed inset-0 z-[100] bg-black/90 items-center justify-center p-4 cursor-pointer" onclick="this.style.display='none'"><img id="lbimg" class="max-w-full max-h-full rounded-md" alt="" /></div>
-<footer class="max-w-7xl w-full mx-auto mt-4 web-box p-2 text-center text-sm font-mono text-reiLight">Victor Pandolfi · Arviixzuh Portfolio © 2026</footer>
-<script>
-  function openImg(src){ document.getElementById('lbimg').src = src; document.getElementById('lb').style.display = 'flex'; }
-  document.addEventListener('keydown', e => { if(e.key==='Escape') document.getElementById('lb').style.display='none' });
-</script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google" content="notranslate" />
+    <title>Litium ~ Arviixzuh</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/js/tailwind-config.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@800&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/projects.css" />
+  </head>
+  <body
+    class="scanlines min-h-screen flex flex-col p-2 sm:p-4 selection:bg-reiHair selection:text-black"
+  >
+    <div
+      data-include="/components/project-header.html"
+      data-title="Litium"
+      data-period="Jul 2025 - Feb 2026"
+    ></div>
+    <main class="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 flex-grow">
+      <project-aside
+        class="lg:col-span-3 space-y-4"
+        data-links='[{"href": "https://github.com/Arviixzuhs/Litium", "icon": "fa-brands fa-github", "label": "Source code"}]'
+        data-technologies='["Redux", "React", "TailwindCSS", "MySQL", "NestJS", "Prisma", "TypeScript", "Socket.io"]'
+      ></project-aside>
+      <section class="lg:col-span-9 space-y-4">
+        <div class="web-box">
+          <div class="web-box-header"><span>~ OVERVIEW ~</span></div>
+          <div class="p-3 bg-panel text-sm font-mono">
+            <p class="font-sans leading-relaxed text-reiLight">
+              Web e-commerce system for Litium C.A., centralizing inventory management and
+              digitalizing appliance sales.
+            </p>
+          </div>
+        </div>
+        <div class="web-box">
+          <div class="web-box-header web-box-header-mlp"><span>~ PLANNING ~</span></div>
+          <div class="p-3 bg-panel text-sm font-mono">
+            <p class="font-sans leading-relaxed text-reiLight/90">
+              Requirement analysis with the company; SCRUM methodology to prioritize critical
+              features.
+            </p>
+          </div>
+        </div>
+        <div class="web-box">
+          <div class="web-box-header web-box-header-nerv"><span>~ FEATURES ~</span></div>
+          <div class="p-3 bg-panel text-sm font-mono">
+            <div class="job">
+              <ul class="text-reiLight/90">
+                <li>Dynamic catalog with detailed specifications and categories.</li>
+                <li>Shopping cart and reservation system with flexible payment options.</li>
+                <li>CRM and interaction via direct chat and community comments.</li>
+                <li>Admin panel for stock control and sales reporting.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="web-box">
+          <div class="web-box-header"><span>~ IMPACT ~</span></div>
+          <div class="p-3 bg-panel text-sm font-mono">
+            <p class="font-sans leading-relaxed text-reiLight">
+              Automated manual processes, extended reach nationally, reduced response times and
+              improved transaction accuracy.
+            </p>
+          </div>
+        </div>
+        <div class="web-box">
+          <div class="web-box-header"><span>~ GALLERY ~</span></div>
+          <div class="p-3 bg-panel text-sm font-mono">
+            <project-gallery
+              data-folder="Litium"
+              data-title="Litium"
+              data-count="15"
+            ></project-gallery>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2 items-center">
+          <span class="font-mono text-sm text-dim">OTHER DOSSIERS:</span
+          ><a
+            href="gestini.html"
+            class="px-2 py-1 bg-card border border-reiHair hover:bg-reiHair hover:text-black font-mono text-sm"
+            >Gestini</a
+          ><a
+            href="detail-plumbing.html"
+            class="px-2 py-1 bg-card border border-reiHair hover:bg-reiHair hover:text-black font-mono text-sm"
+            >Detail Plumbing</a
+          ><a
+            href="marvig.html"
+            class="px-2 py-1 bg-card border border-reiHair hover:bg-reiHair hover:text-black font-mono text-sm"
+            >Marvig</a
+          ><a
+            href="litium.html"
+            class="px-2 py-1 bg-card border border-reiPupil text-reiPupil font-mono text-sm"
+            >Litium</a
+          ><a
+            href="vitalcare.html"
+            class="px-2 py-1 bg-card border border-reiHair hover:bg-reiHair hover:text-black font-mono text-sm"
+            >Vitalcare</a
+          >
+        </div>
+      </section>
+    </main>
+    <div
+      data-include="/components/site-footer.html"
+      data-text="Victor Pandolfi · Arviixzuh Portfolio © 2026"
+    ></div>
+    <script type="module" src="/js/includes.js"></script>
+    <script type="module" src="/js/project-gallery.js"></script>
+    <script type="module" src="/js/project-aside.js"></script>
+  </body>
 </html>
