@@ -42,12 +42,18 @@
     --bruise: 255 179 222; --bruise-deep: 74 25 55; --bruise-mid: 122 43 93; --sick: 80 250 123;
   }
   body {
+    animation: grid-drift 12s linear infinite;
     background-color: rgb(var(--void));
     background-image:
       linear-gradient(rgb(var(--hair) / .08) 1px, transparent 1px),
       linear-gradient(90deg, rgb(var(--hair) / .08) 1px, transparent 1px);
     background-size: 20px 20px; color: rgb(var(--ink)); font-family: 'Tahoma', sans-serif;
   }
+  @keyframes grid-drift { from { background-position: 0 0, 0 0 } to { background-position: 20px 20px, 20px 20px } }
+  html::before { content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background: radial-gradient(ellipse at 20% 15%, rgb(var(--hair) / .10), transparent 55%), radial-gradient(ellipse at 80% 85%, rgb(var(--blood) / .10), transparent 55%);
+    animation: bg-breathe 9s ease-in-out infinite alternate; }
+  @keyframes bg-breathe { from { opacity:.35; transform: scale(1) } to { opacity:1; transform: scale(1.08) } }
   .scanlines::before {
     content: ' '; display: block; position: fixed; inset: 0; z-index: 99; pointer-events: none;
     background: linear-gradient(rgb(18 16 16 / 0) 50%, rgb(0 0 0 / .35) 50%); background-size: 100% 3px; opacity: .6;

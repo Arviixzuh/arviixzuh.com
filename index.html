@@ -1,966 +1,552 @@
 <!doctype html>
 <html lang="en" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="google" content="notranslate" />
-    <title>Arviixzuh ~ Personal website</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      const c = (n) => `rgb(var(--${n}) / <alpha-value>)`
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            colors: {
-              void: c('void'),
-              panel: c('panel'),
-              card: c('card'),
-              chip: c('chip'),
-              chiphi: c('chip-hi'),
-              reiHair: c('hair'),
-              reiLight: c('ink'),
-              reiPupil: c('blood'),
-              bloodDeep: c('blood-deep'),
-              bloodMid: c('blood-mid'),
-              mlpPink: c('bruise'),
-              bruiseDeep: c('bruise-deep'),
-              bruiseMid: c('bruise-mid'),
-              wiredGreen: c('sick'),
-              dim: c('dim'),
-              line: c('line'),
-            },
-            fontFamily: {
-              mono: ['Courier New', 'VT323', 'monospace'],
-              sans: ['Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
-              pixel: ['Comic Sans MS', 'Trebuchet MS', 'sans-serif'],
-            },
-          },
-        },
-      }
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@800&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <style>
-      :root {
-        --void: 10 8 9;
-        --panel: 15 11 12;
-        --card: 24 18 20;
-        --chip: 42 32 36;
-        --chip-hi: 74 58 64;
-        --ink: 201 207 196;
-        --dim: 140 134 128;
-        --line: 70 60 62;
-        --hair: 138 165 160;
-        --blood: 212 42 69;
-        --blood-deep: 74 14 23;
-        --blood-mid: 128 27 42;
-        --bruise: 184 122 140;
-        --bruise-deep: 58 31 40;
-        --bruise-mid: 92 48 64;
-        --sick: 159 184 74;
-      }
-      [data-theme='lain'] {
-        --void: 11 14 25;
-        --panel: 11 15 29;
-        --card: 16 22 42;
-        --chip: 26 37 72;
-        --chip-hi: 39 59 122;
-        --ink: 208 225 255;
-        --dim: 156 163 175;
-        --line: 55 65 81;
-        --hair: 160 196 255;
-        --blood: 255 77 109;
-        --blood-deep: 74 14 23;
-        --blood-mid: 128 27 42;
-        --bruise: 255 179 222;
-        --bruise-deep: 74 25 55;
-        --bruise-mid: 122 43 93;
-        --sick: 80 250 123;
-      }
-      body {
-        background-color: rgb(var(--void));
-        background-image:
-          linear-gradient(rgb(var(--hair) / 0.08) 1px, transparent 1px),
-          linear-gradient(90deg, rgb(var(--hair) / 0.08) 1px, transparent 1px);
-        background-size: 20px 20px;
-        color: rgb(var(--ink));
-        font-family: 'Tahoma', sans-serif;
-      }
-      .scanlines::before {
-        content: ' ';
-        display: block;
-        position: fixed;
-        inset: 0;
-        z-index: 99;
-        pointer-events: none;
-        background: linear-gradient(rgb(18 16 16 / 0) 50%, rgb(0 0 0 / 0.35) 50%);
-        background-size: 100% 3px;
-        opacity: 0.6;
-      }
-      .web-box {
-        background-color: rgb(var(--card));
-        border: 2px solid rgb(var(--hair));
-        box-shadow: 3px 3px 0 rgb(var(--blood) / 0.25);
-        border-radius: 4px;
-      }
-      .web-box-header {
-        background: linear-gradient(90deg, rgb(var(--chip)), rgb(var(--chip-hi)));
-        border-bottom: 1px solid rgb(var(--hair));
-        color: rgb(var(--ink));
-        font-size: 13px;
-        font-weight: bold;
-        padding: 4px 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .web-box-header-nerv {
-        background: linear-gradient(90deg, rgb(var(--blood-deep)), rgb(var(--blood-mid)));
-        border-bottom: 1px solid rgb(var(--blood));
-      }
-      .web-box-header-mlp {
-        background: linear-gradient(90deg, rgb(var(--bruise-deep)), rgb(var(--bruise-mid)));
-        border-bottom: 1px solid rgb(var(--bruise));
-      }
-      .badge-8831 {
-        width: 88px;
-        height: 31px;
-        font-size: 9px;
-        font-family: monospace;
-        font-weight: bold;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid rgb(var(--hair));
-        background-color: rgb(var(--panel));
-        color: rgb(var(--ink));
-        text-align: center;
-        text-transform: uppercase;
-      }
-      .psych-scribble {
-        font-family: 'Comic Sans MS', cursive, sans-serif;
-        transform: rotate(-1deg);
-      }
-      @keyframes marquee {
-        0% {
-          transform: translateX(0);
-        }
-        100% {
-          transform: translateX(-50%);
-        }
-      }
-      .animate-marquee {
-        display: inline-flex;
-        white-space: nowrap;
-        will-change: transform;
-        animation: marquee 40s linear infinite;
-      }
-      .animate-marquee > span {
-        padding-right: 3rem;
-      }
-      ::-webkit-scrollbar {
-        width: 10px;
-        background: rgb(var(--panel));
-      }
-      ::-webkit-scrollbar-thumb {
-        background: rgb(var(--hair));
-        border: 1px solid rgb(var(--void));
-      }
-      .job ul {
-        list-style: none;
-      }
-      .job li {
-        position: relative;
-        padding-left: 12px;
-        margin-top: 3px;
-      }
-      .job li::before {
-        content: '▸';
-        position: absolute;
-        left: 0;
-        color: rgb(var(--blood));
-      }
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Arviixzuh ~ Webcore Personal Terminal ~ [Rei_Ayanami_Node_0926]</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  const c = (n) => `rgb(var(--${n}) / <alpha-value>)`
+  tailwind.config = {
+    darkMode: 'class',
+    theme: { extend: {
+      colors: {
+        void: c('void'), panel: c('panel'), card: c('card'), chip: c('chip'), chiphi: c('chip-hi'),
+        reiHair: c('hair'), reiLight: c('ink'), reiPupil: c('blood'), bloodDeep: c('blood-deep'), bloodMid: c('blood-mid'),
+        mlpPink: c('bruise'), bruiseDeep: c('bruise-deep'), bruiseMid: c('bruise-mid'),
+        wiredGreen: c('sick'), dim: c('dim'), line: c('line'),
+      },
+      fontFamily: {
+        mono: ['Courier New', 'VT323', 'monospace'],
+        sans: ['Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+        pixel: ['Comic Sans MS', 'Trebuchet MS', 'sans-serif'],
+      },
+    } },
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@800&display=swap" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+  :root {
+    --void: 10 8 9; --panel: 15 11 12; --card: 24 18 20; --chip: 42 32 36; --chip-hi: 74 58 64;
+    --ink: 201 207 196; --dim: 140 134 128; --line: 70 60 62; --hair: 138 165 160;
+    --blood: 212 42 69; --blood-deep: 74 14 23; --blood-mid: 128 27 42;
+    --bruise: 184 122 140; --bruise-deep: 58 31 40; --bruise-mid: 92 48 64; --sick: 159 184 74;
+  }
+  [data-theme="lain"] {
+    --void: 11 14 25; --panel: 11 15 29; --card: 16 22 42; --chip: 26 37 72; --chip-hi: 39 59 122;
+    --ink: 208 225 255; --dim: 156 163 175; --line: 55 65 81; --hair: 160 196 255;
+    --blood: 255 77 109; --blood-deep: 74 14 23; --blood-mid: 128 27 42;
+    --bruise: 255 179 222; --bruise-deep: 74 25 55; --bruise-mid: 122 43 93; --sick: 80 250 123;
+  }
+  body {
+    background-color: rgb(var(--void));
+    background-image:
+      linear-gradient(rgb(var(--hair) / .08) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--hair) / .08) 1px, transparent 1px);
+    background-size: 20px 20px; color: rgb(var(--ink)); font-family: 'Tahoma', sans-serif;
+  }
+  .scanlines::before {
+    content: ' '; display: block; position: fixed; inset: 0; z-index: 99; pointer-events: none;
+    background: linear-gradient(rgb(18 16 16 / 0) 50%, rgb(0 0 0 / .35) 50%); background-size: 100% 3px; opacity: .6;
+  }
+  .web-box { background-color: rgb(var(--card)); border: 2px solid rgb(var(--hair)); box-shadow: 3px 3px 0 rgb(var(--blood) / .25); border-radius: 4px; }
+  .web-box-header {
+    background: linear-gradient(90deg, rgb(var(--chip)), rgb(var(--chip-hi)));
+    border-bottom: 1px solid rgb(var(--hair)); color: rgb(var(--ink));
+    font-size: 13px; font-weight: bold; padding: 4px 10px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .web-box-header-nerv { background: linear-gradient(90deg, rgb(var(--blood-deep)), rgb(var(--blood-mid))); border-bottom: 1px solid rgb(var(--blood)); }
+  .web-box-header-mlp { background: linear-gradient(90deg, rgb(var(--bruise-deep)), rgb(var(--bruise-mid))); border-bottom: 1px solid rgb(var(--bruise)); }
+  .badge-8831 {
+    width: 88px; height: 31px; font-size: 9px; font-family: monospace; font-weight: bold;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid rgb(var(--hair)); background-color: rgb(var(--panel)); color: rgb(var(--ink)); text-align: center; text-transform: uppercase;
+  }
+  .psych-scribble { font-family: 'Comic Sans MS', cursive, sans-serif; transform: rotate(-1deg); }
+  @keyframes marquee { 0% { transform: translateX(0) } 100% { transform: translateX(-50%) } }
+  .animate-marquee { display: inline-flex; white-space: nowrap; will-change: transform; animation: marquee 40s linear infinite; }
+  .animate-marquee > span { padding-right: 3rem; }
+  ::-webkit-scrollbar { width: 10px; background: rgb(var(--panel)); }
+  ::-webkit-scrollbar-thumb { background: rgb(var(--hair)); border: 1px solid rgb(var(--void)); }
+  .job ul { list-style: none; }
+  .job li { position: relative; padding-left: 12px; margin-top: 3px; }
+  .job li::before { content: '▸'; position: absolute; left: 0; color: rgb(var(--blood)); }
 
-      section .web-box .bg-card {
-        transition:
-          border-color 0.2s,
-          box-shadow 0.2s,
-          transform 0.2s;
-      }
-      section .web-box .bg-card:hover {
-        border-color: rgb(var(--blood)) !important;
-        box-shadow:
-          0 0 0 1px rgb(var(--blood) / 0.6),
-          0 0 14px rgb(var(--blood) / 0.35),
-          3px 3px 0 rgb(var(--bruise) / 0.4);
-        transform: translateY(-2px);
-      }
+  section .web-box .bg-card { transition: border-color .2s, box-shadow .2s, transform .2s; }
+  section .web-box .bg-card:hover {
+    border-color: rgb(var(--blood)) !important;
+    box-shadow: 0 0 0 1px rgb(var(--blood) / .6), 0 0 14px rgb(var(--blood) / .35), 3px 3px 0 rgb(var(--bruise) / .4);
+    transform: translateY(-2px);
+  }
 
-      .name-glitch {
-        font-family:
-          'Shippori Mincho B1', 'Hiragino Mincho ProN', 'Yu Mincho', 'Times New Roman', serif;
-        font-weight: 800;
-        font-size: 2.5rem;
-        line-height: 1.05;
-        letter-spacing: -0.02em;
-        color: rgb(var(--ink));
-        display: inline-block;
-        transform: scaleX(0.92);
-        transform-origin: left center;
-        text-shadow:
-          2px 2px 0 rgb(var(--blood-mid)),
-          0 0 1px rgb(var(--ink) / 0.6);
-      }
-      @media (min-width: 640px) {
-        .name-glitch {
-          font-size: 3.25rem;
-        }
-      }
+  .name-glitch {
+    font-family: 'Shippori Mincho B1', 'Hiragino Mincho ProN', 'Yu Mincho', 'Times New Roman', serif; font-weight: 800;
+    font-size: 2.5rem; line-height: 1.05; letter-spacing: -.02em;
+    color: rgb(var(--ink)); display: inline-block;
+    transform: scaleX(.92); transform-origin: left center;
+    text-shadow: 2px 2px 0 rgb(var(--blood-mid)), 0 0 1px rgb(var(--ink) / .6);
+  }
+  @media (min-width: 640px) { .name-glitch { font-size: 3.25rem; } }
 
-      .card-link::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-      }
-      section .bg-card:has(.card-link) {
-        position: relative;
-        cursor: pointer;
-      }
-    </style>
-  </head>
-  <body
-    class="scanlines min-h-screen flex flex-col p-2 sm:p-4 selection:bg-reiHair selection:text-black"
-  >
-    <header class="max-w-7xl w-full mx-auto mb-4 web-box overflow-hidden">
-      <div
-        class="bg-black border-b border-reiHair text-reiHair text-[14px] font-mono py-1 px-4 overflow-hidden"
-      >
-        <div class="animate-marquee tracking-wider">
-          <span
-            >*** ARVIIXZUHのWIREDブログへようこそ *** ソフトウェアエンジニア ***
-            「世界を閉じ、次を開く」 *** MAGIシステム：パターン・ブルーを確認 ***
-            友情は魔法、バックエンドは決定論的 *** アイスラー記念病院 ドキュメント #0926 ***</span
-          ><span aria-hidden="true"
-            >*** ARVIIXZUHのWIREDブログへようこそ *** ソフトウェアエンジニア ***
-            「世界を閉じ、次を開く」 *** MAGIシステム：パターン・ブルーを確認 ***
-            友情は魔法、バックエンドは決定論的 *** アイスラー記念病院 ドキュメント #0926 ***</span
-          >
+  .card-link::after { content: ''; position: absolute; inset: 0; }
+  section .bg-card:has(.card-link) { position: relative; cursor: pointer; }
+
+  /* ===== animaciones estilo GIF (CSS puro, sin archivos) ===== */
+  .avatar-fx { position:absolute; inset:0; pointer-events:none; opacity:.35; mix-blend-mode:overlay;
+    background: repeating-linear-gradient(0deg, rgb(0 0 0 / .55) 0 1px, transparent 1px 3px); animation: noise-roll 6s linear infinite; transition: opacity .3s; }
+  .avatar-fx::after { content:''; position:absolute; left:0; right:0; height:18%; top:-20%; background:linear-gradient(transparent, rgb(var(--hair) / .25), transparent); animation: scan-bar 4s linear infinite; }
+  .group:hover .avatar-fx { opacity:0; }
+  @keyframes noise-roll { to { background-position: 0 30px } }
+  @keyframes scan-bar { to { top: 120% } }
+
+  .eq { display:flex; align-items:flex-end; justify-content:center; gap:3px; height:28px; }
+  .eq i { display:block; width:5px; height:100%; background: rgb(var(--sick)); transform-origin: bottom; transform: scaleY(.2); animation: eq-bar 1s ease-in-out infinite; }
+  .eq i:nth-child(2){animation-duration:.7s;animation-delay:-.2s} .eq i:nth-child(3){animation-duration:1.2s;animation-delay:-.5s}
+  .eq i:nth-child(4){animation-duration:.8s;animation-delay:-.1s} .eq i:nth-child(5){animation-duration:1.1s;animation-delay:-.7s}
+  .eq i:nth-child(6){animation-duration:.9s;animation-delay:-.3s} .eq i:nth-child(7){animation-duration:1.3s;animation-delay:-.6s}
+  .eq i:nth-child(8){animation-duration:.75s;animation-delay:-.4s}
+  @keyframes eq-bar { 0%,100% { transform: scaleY(.15) } 50% { transform: scaleY(1) } }
+  .disc { width:34px; height:34px; border-radius:50%; border:1px solid rgb(var(--hair)); flex:none;
+    background: radial-gradient(circle, rgb(var(--void)) 0 18%, transparent 19%), conic-gradient(rgb(var(--hair)), rgb(var(--chip)), rgb(var(--bruise)), rgb(var(--chip)), rgb(var(--hair)));
+    animation: spin 3s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg) } }
+
+  .radar { position:relative; width:84px; height:84px; margin:0 auto 6px; border-radius:50%; border:1px solid rgb(var(--sick) / .7); overflow:hidden;
+    background: radial-gradient(circle, transparent 0 30%, rgb(var(--sick) / .25) 31% 32%, transparent 33% 62%, rgb(var(--sick) / .25) 63% 64%, transparent 65%),
+      linear-gradient(rgb(var(--sick) / .25), rgb(var(--sick) / .25)) center / 1px 100% no-repeat,
+      linear-gradient(rgb(var(--sick) / .25), rgb(var(--sick) / .25)) center / 100% 1px no-repeat; }
+  .radar::before { content:''; position:absolute; inset:0; background: conic-gradient(from 0deg, rgb(var(--sick) / .55), transparent 25%); animation: spin 3s linear infinite; }
+  .radar::after { content:''; position:absolute; width:5px; height:5px; border-radius:50%; background: rgb(var(--blood)); top:28%; left:62%; animation: ping-dot 3s linear infinite; }
+  @keyframes ping-dot { 0%,10% { opacity:1 } 60%,100% { opacity:0 } }
+  .pattern-blink::after { content:'BLUE'; color: rgb(var(--hair)); animation: pattern 2.4s steps(1) infinite; }
+  @keyframes pattern { 0%,100% { content:'BLUE'; color: rgb(var(--hair)) } 50% { content:'GREEN'; color: rgb(var(--sick)) } }
+
+  .badge-8831 { position:relative; overflow:hidden; }
+  .badge-scroll span { display:inline-block; white-space:nowrap; animation: badge-marq 6s linear infinite; }
+  @keyframes badge-marq { from { transform: translateX(100%) } to { transform: translateX(-100%) } }
+  .badge-nerv { animation: badge-alert 1.4s steps(1) infinite; }
+  @keyframes badge-alert { 0%,100% { border-color: rgb(var(--blood)); box-shadow: inset 0 0 6px rgb(var(--blood) / .6) } 50% { border-color: rgb(var(--blood-mid)); box-shadow: none } }
+  .badge-wired::after { content:''; position:absolute; left:0; right:0; height:6px; top:-8px; background: linear-gradient(transparent, rgb(var(--sick) / .5), transparent); animation: scan-bar-b 2s linear infinite; }
+  @keyframes scan-bar-b { to { top: 34px } }
+  .badge-hue { animation: hue 5s linear infinite; }
+  @keyframes hue { 0%,100% { color: rgb(var(--bruise)); border-color: rgb(var(--bruise)) } 50% { color: rgb(var(--hair)); border-color: rgb(var(--hair)) } }
+
+  .sparkle { position:absolute; top:50%; z-index:10; background:#000; padding:0 .5rem; color: rgb(var(--hair)); animation: twinkle 1.6s ease-in-out infinite; transform: translateY(-50%); }
+  @keyframes twinkle { 0%,100% { opacity:.3; text-shadow:none } 50% { opacity:1; text-shadow: 0 0 6px rgb(var(--hair)) } }
+  @media (prefers-reduced-motion: reduce) { .avatar-fx, .avatar-fx::after, .eq i, .disc, .radar::before, .radar::after, .badge-scroll span, .badge-nerv, .badge-wired::after, .badge-hue, .sparkle, .pattern-blink::after { animation: none !important } }
+
+  /* ===== fondo con movimiento ===== */
+  body { animation: grid-drift 12s linear infinite; }
+  @keyframes grid-drift { from { background-position: 0 0, 0 0 } to { background-position: 20px 20px, 20px 20px } }
+  html::before { content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background: radial-gradient(ellipse at 20% 15%, rgb(var(--hair) / .10), transparent 55%), radial-gradient(ellipse at 80% 85%, rgb(var(--blood) / .10), transparent 55%);
+    animation: bg-breathe 9s ease-in-out infinite alternate; }
+  @keyframes bg-breathe { from { opacity:.35; transform: scale(1) } to { opacity:1; transform: scale(1.08) } }
+
+  @media (prefers-reduced-motion: reduce) { body, html::before, body::after { animation: none !important } }
+
+</style>
+</head>
+<body class="scanlines min-h-screen flex flex-col p-2 sm:p-4 selection:bg-reiHair selection:text-black">
+
+<div class="relative -mx-2 sm:-mx-4 -mt-2 sm:-mt-4 mb-3 sm:mb-4 bg-black border-b-2 border-reiHair/50 text-reiHair text-[14px] font-mono py-1 px-4 overflow-hidden">
+    <div class="animate-marquee tracking-wider"><span>*** ARVIIXZUHのWIREDブログへようこそ *** ソフトウェアエンジニア *** 「世界を閉じ、次を開く」 *** MAGIシステム：パターン・ブルーを確認 *** 友情は魔法、バックエンドは決定論的 *** アイスラー記念病院 ドキュメント #0926 ***</span><span aria-hidden="true">*** ARVIIXZUHのWIREDブログへようこそ *** ソフトウェアエンジニア *** 「世界を閉じ、次を開く」 *** MAGIシステム：パターン・ブルーを確認 *** 友情は魔法、バックエンドは決定論的 *** アイスラー記念病院 ドキュメント #0926 ***</span></div>
+</div>
+
+<header class="max-w-7xl w-full mx-auto mb-4 web-box overflow-hidden">
+  <div class="p-4 bg-gradient-to-r from-void via-chip to-void flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div>
+      <h1 class="text-2xl sm:text-3xl font-bold text-reiLight tracking-wider flex items-center gap-2">
+        <span class="name-glitch">Victor Pandolfi</span> <span class="text-sm bg-reiHair text-black px-2 py-0.5 rounded font-mono">a.k.a. Arviixzuh</span>
+      </h1>
+      <p class="text-sm text-reiLight font-mono"><i class="fa-solid fa-terminal text-wiredGreen"></i> Software Engineer 7+ yrs</p>
+    </div>
+    <div class="flex items-center gap-2 font-mono text-sm">
+      <button onclick="playRetroSfx()" class="bg-chip hover:bg-reiHair hover:text-black border border-reiHair px-3 py-2 rounded text-reiLight transition-all"><span id="sfx-status">SFX: OFF</span></button>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 flex-grow">
+  <aside class="lg:col-span-3 space-y-4">
+    <div class="web-box">
+      <div class="web-box-header"><span>~ ABOUT ME ~</span><i class="fa-solid fa-heart text-reiPupil"></i></div>
+      <div class="p-3 space-y-3 font-mono text-sm bg-panel">
+        <div class="relative w-full aspect-square border-2 border-reiHair overflow-hidden bg-black group">
+          <img src="assets/img/pictures/LAIN.gif" alt="Arviixzuh Profile Avatar" class="w-full h-full object-cover filter contrast-110 grayscale hover:filter-none transition-all duration-300" />
+          <div class="avatar-fx"></div>
+          <div class="absolute bottom-0 inset-x-0 bg-black/80 text-[13px] text-reiHair p-1 text-center border-t border-reiHair">SUBJECT: ARVIIXZUH</div>
+        </div>
+        <div class="space-y-1 border-t border-reiHair/30 pt-2 text-[14px]">
+          <div class="flex justify-between"><span class="text-dim">Role:</span> <span class="text-reiHair font-bold">Software Engineer</span></div>
+          <div class="flex justify-between"><span class="text-dim">Focus:</span> <span class="text-reiLight">Backend &amp; Web</span></div>
+          <div class="flex justify-between"><span class="text-dim">Stack:</span> <span class="text-wiredGreen">NestJS / Spring</span></div>
+          <div class="flex justify-between"><span class="text-dim">Experience:</span> <span class="text-reiLight">7+ years</span></div>
         </div>
       </div>
-      <div
-        class="p-3 sm:p-4 bg-gradient-to-r from-void via-chip to-void flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4 text-center md:text-left"
-      >
-        <div class="min-w-0 w-full md:w-auto">
-          <h1
-            class="font-bold text-reiLight tracking-wider flex flex-wrap items-center justify-center md:justify-start gap-x-3 gap-y-1"
-          >
-            <span class="name-glitch">Victor Pandolfi</span>
-            <span
-              class="text-xs sm:text-sm bg-reiHair text-black px-2 py-0.5 rounded font-mono whitespace-nowrap"
-              >a.k.a. Arviixzuh</span
-            >
-          </h1>
-          <p class="text-xs sm:text-sm text-reiLight font-mono mt-1 break-words">
-            <i class="fa-solid fa-terminal text-wiredGreen"></i>
-            Software Engineer
-            <span class="hidden sm:inline">// 7+ yrs</span>
-          </p>
+    </div>
+
+    <div class="web-box">
+      <div class="web-box-header"><span>~ EDUCATION ~</span><i class="fa-solid fa-graduation-cap"></i></div>
+      <div class="p-3 text-[14px] space-y-2 bg-panel font-mono">
+        <div><div class="text-reiHair font-bold">Computer Engineering</div><div class="text-dim">U.P.T.N.M “Ludovico Silva”</div><div class="text-[13px] text-wiredGreen">Mar 2025 – Present</div></div>
+        <div class="border-t border-line/50 pt-2"><div class="text-reiHair font-bold">Assoc. Degree, Computer Science</div><div class="text-dim">U.P.T.N.M “Ludovico Silva”</div><div class="text-[13px] text-dim">Oct 2022 – Feb 2025</div></div>
+      </div>
+    </div>
+
+    <div class="web-box">
+      <div class="web-box-header"><span>~ LANGUAGES ~</span><i class="fa-solid fa-language"></i></div>
+      <div class="p-3 text-[14px] bg-panel font-mono space-y-1">
+        <div class="flex justify-between"><span>Spanish</span><span class="text-wiredGreen">Native</span></div>
+        <div class="flex justify-between"><span>English</span><span class="text-reiHair">B2</span></div>
+      </div>
+    </div>
+
+    <div class="web-box">
+      <div class="web-box-header"><span>~ L/F ANIME ~</span><i class="fa-solid fa-tv"></i></div>
+      <div class="p-3 text-sm space-y-2 bg-panel">
+        <div class="border-2 border-reiHair overflow-hidden bg-black">
+          <img src="assets/img/pictures/TheTelephoneWires.jpg" alt="Anime favorite" loading="lazy" referrerpolicy="no-referrer" class="w-full h-auto block filter contrast-110 grayscale hover:filter-none transition-all duration-300" />
         </div>
-        <div class="flex items-center justify-center gap-2 font-mono text-sm">
-          <button
-            onclick="playRetroSfx()"
-            class="bg-chip hover:bg-reiHair hover:text-black border border-reiHair px-3 py-2 rounded text-reiLight transition-all whitespace-nowrap"
-          >
-            <span id="sfx-status">SFX: OFF</span>
-          </button>
+        <div class="flex flex-wrap gap-1 text-[13px] font-mono">
+          <span class="bg-chip text-reiHair border border-reiHair px-1.5 py-0.5 rounded">Serial Experiments Lain</span>
+          <span class="bg-bloodDeep text-reiPupil border border-reiPupil px-1.5 py-0.5 rounded">Neon Genesis Evangelion</span>
+          <span class="bg-chip text-reiLight border border-reiHair px-1.5 py-0.5 rounded">Monster</span>
+          <span class="bg-bruiseDeep text-mlpPink border border-mlpPink px-1.5 py-0.5 rounded">My Little Pony</span>
         </div>
       </div>
-    </header>
+    </div>
 
-    <main class="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 flex-grow">
-      <aside class="lg:col-span-3 space-y-4">
-        <div class="web-box">
-          <div class="web-box-header">
-            <span>~ ABOUT ME ~</span><i class="fa-solid fa-heart text-reiPupil"></i>
+    <div class="web-box">
+      <div class="web-box-header"><span>~ L/F GAMES ~</span><i class="fa-solid fa-gamepad"></i></div>
+      <div class="p-3 text-sm bg-panel">
+        <div class="flex flex-wrap gap-1 text-[13px] font-mono">
+          <span class="bg-card text-reiHair border border-reiHair px-1.5 py-0.5">Minecraft</span>
+          <span class="bg-card text-reiHair border border-reiHair px-1.5 py-0.5">Valorant</span>
+          <span class="bg-card text-reiHair border border-reiHair px-1.5 py-0.5">Albion Online</span>
+          <span class="bg-card text-reiHair border border-reiHair px-1.5 py-0.5">Needy Girl Overdose</span>
+          <span class="bg-card text-reiHair border border-reiHair px-1.5 py-0.5">Undertale</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="web-box">
+      <div class="web-box-header"><span>~ L/F MUSIC ~</span><i class="fa-solid fa-music"></i></div>
+      <div class="p-3 bg-panel font-mono space-y-1 text-[14px] text-reiLight/80">
+        <div class="border-2 border-reiHair overflow-hidden bg-black">
+          <img src="assets/img/pictures/SDAT.gif" alt="Anime favorite" loading="lazy" referrerpolicy="no-referrer" class="w-full h-auto block filter contrast-110 grayscale hover:filter-none transition-all duration-300" />
+        </div>
+        <div>• Boa (Duvet)</div><div>• Breakcore / Ambient</div><div>• Vocaloid / Y2K Pop</div><div>• 2000s Anime OSTs</div>
+      </div>
+    </div>
+  </aside>
+
+  <section class="lg:col-span-6 space-y-4">
+    <div class="web-box">
+      <div class="web-box-header"><span>~ PROFILE ~</span><span class="text-[13px] font-mono text-reiHair">UPDATED: 2026.11</span></div>
+      <div class="p-4 space-y-3 text-sm leading-relaxed bg-panel font-sans">
+        <p class="text-reiLight">Hey, I'm <strong class="font-mono">Victor</strong> (<strong class="font-mono">Arviixzuh</strong>), a <span class="text-reiHair font-bold underline">Software Engineer</span> with 7+ years of experience building maintainable, efficient applications with <strong class="text-wiredGreen font-mono">NestJS</strong> and <strong class="text-wiredGreen font-mono">Spring Boot</strong>, working in Agile/Scrum teams.</p>
+        <p class="text-reiLight/80">Strong technical leadership and communication: I translate business requirements into reliable technical features, apply design patterns for readable, maintainable code, lead end-to-end development cycles, automate CI/CD and optimize cloud infrastructure.</p>
+        <div class="p-2 bg-card border border-reiHair text-[14px] font-mono text-reiLight rounded flex justify-between items-center">
+          <span><i class="fa-solid fa-quote-left text-reiPupil"></i> Friendship is magic, backends are deterministic.</span>
+          <span class="psych-scribble text-mlpPink text-sm">Chaos Engine</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="web-box">
+      <div class="web-box-header web-box-header-nerv"><span>~ EMPLOYMENT HISTORY / SERVICE RECORD ~</span><i class="fa-solid fa-briefcase"></i></div>
+      <div class="p-3 space-y-3 bg-panel">
+
+        <div class="job p-3 bg-card border border-reiHair rounded text-sm">
+          <div class="flex justify-between items-start gap-2">
+            <h3 class="font-bold text-reiLight text-base font-mono">Co-Founder · Gestini</h3>
+            <span class="text-[12px] bg-chip text-wiredGreen border border-wiredGreen px-1 font-mono whitespace-nowrap">Jun 2024 – Present</span>
           </div>
-          <div class="p-3 space-y-3 font-mono text-sm bg-panel">
-            <div
-              class="relative w-full aspect-square border-2 border-reiHair overflow-hidden bg-black group"
-            >
-              <img
-                src="assets/img/pictures/LAIN.jpg"
-                alt="Arviixzuh Profile Avatar"
-                class="w-full h-full object-cover filter contrast-110 grayscale hover:filter-none transition-all duration-300"
-              />
-              <div
-                class="absolute bottom-0 inset-x-0 bg-black/80 text-[13px] text-reiHair p-1 text-center border-t border-reiHair"
-              >
-                SUBJECT: ARVIIXZUH
-              </div>
-            </div>
-            <div class="space-y-1 border-t border-reiHair/30 pt-2 text-[14px]">
-              <div class="flex justify-between">
-                <span class="text-dim">Role:</span>
-                <span class="text-reiHair font-bold">Software Engineer</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-dim">Focus:</span>
-                <span class="text-reiLight">Backend &amp; Web</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-dim">Stack:</span>
-                <span class="text-wiredGreen">NestJS / Spring Boot</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-dim">Experience:</span>
-                <span class="text-reiLight">7+ years</span>
-              </div>
-            </div>
-          </div>
+          <div class="text-[13px] text-dim font-mono">Buenos Aires, Argentina (remote) · Full-time</div>
+          <p class="text-reiLight/80 mt-1">SaaS for administrative management and electronic invoicing for small and medium-sized businesses.</p>
+          <ul class="text-reiLight/80">
+            <li>Directed strategic decisions on tech stack, infrastructure and long-term technical roadmap, aligned with business goals.</li>
+            <li>Designed and implemented direct tax integration with the ARCA (Argentina) API for compliant electronic invoices.</li>
+            <li>Built the MercadoPago checkout module: online payments and real-time transaction updates via webhooks.</li>
+            <li>Implemented a specialized AI agent for data extraction and analysis, reducing manual intervention across workflows.</li>
+            <li>Designed the database architecture and versioned migrations (Liquibase) for safe evolution in production.</li>
+            <li>Led code reviews and architectural standards across the team.</li>
+            <li>Automated CI/CD pipelines for reproducible production deployments.</li>
+          </ul>
         </div>
 
-        <div class="web-box">
-          <div class="web-box-header">
-            <span>~ EDUCATION ~</span><i class="fa-solid fa-graduation-cap"></i>
+        <div class="job p-3 bg-card border border-reiHair rounded text-sm">
+          <div class="flex justify-between items-start gap-2">
+            <h3 class="font-bold text-reiLight text-base font-mono">Full-Stack Developer · Detail Plumbing</h3>
+            <span class="text-[12px] bg-chip text-reiHair border border-reiHair px-1 font-mono whitespace-nowrap">Sep 2024 – May 2025</span>
           </div>
-          <div class="p-3 text-[14px] space-y-2 bg-panel font-mono">
-            <div>
-              <div class="text-reiHair font-bold">Computer Engineering</div>
-              <div class="text-dim">U.P.T.N.M “Ludovico Silva”</div>
-              <div class="text-[13px] text-wiredGreen">Mar 2025 – Present</div>
-            </div>
-            <div class="border-t border-line/50 pt-2">
-              <div class="text-reiHair font-bold">Assoc. Degree, Computer Science</div>
-              <div class="text-dim">U.P.T.N.M “Ludovico Silva”</div>
-              <div class="text-[13px] text-dim">Oct 2022 – Feb 2025</div>
-            </div>
-          </div>
+          <div class="text-[13px] text-dim font-mono">Miami, FL (remote) · Freelance</div>
+          <p class="text-reiLight/80 mt-1">Web platform that restructured the whole quoting and materials-management workflow: no manual steps, centralized blueprint processing.</p>
+          <ul class="text-reiLight/80">
+            <li>Ran the diagnostic phase through professional interviews, resolving critical bottlenecks.</li>
+            <li>Systematized budget and material estimates from digital measurements, cutting manual errors and processing times.</li>
+            <li>Created precision tools for editing drawings in digital blueprints.</li>
+            <li>Applied RBAC and an audit log for full oversight of project revisions.</li>
+          </ul>
         </div>
 
-        <div class="web-box">
-          <div class="web-box-header">
-            <span>~ LANGUAGES ~</span><i class="fa-solid fa-language"></i>
+        <div class="job p-3 bg-card border border-reiHair rounded text-sm">
+          <div class="flex justify-between items-start gap-2">
+            <h3 class="font-bold text-reiLight text-base font-mono">Full-Stack Developer · Dream Junk Studios</h3>
+            <span class="text-[12px] bg-chip text-reiHair border border-reiHair px-1 font-mono whitespace-nowrap">Sep 2022 – May 2024</span>
           </div>
-          <div class="p-3 text-[14px] bg-panel font-mono space-y-1">
-            <div class="flex justify-between">
-              <span>Spanish</span><span class="text-wiredGreen">Native</span>
-            </div>
-            <div class="flex justify-between">
-              <span>English</span><span class="text-reiHair">B2</span>
-            </div>
-          </div>
+          <div class="text-[13px] text-dim font-mono">Miami, FL (remote) · Full-time</div>
+          <p class="text-reiLight/80 mt-1">Technology development, video game development and marketing company.</p>
+          <ul class="text-reiLight/80">
+            <li>Architected a business management system with an integrated social network, unifying communication and collaboration.</li>
+            <li>Built Discord bots that automate workflows and boost community engagement, reducing operating costs.</li>
+            <li>Worked closely with UI/UX designers to validate and integrate interfaces.</li>
+          </ul>
         </div>
 
-        <div class="web-box">
-          <div class="web-box-header"><span>~ L/F ANIME ~</span><i class="fa-solid fa-tv"></i></div>
-          <div class="p-3 text-sm space-y-2 bg-panel">
-            <div class="flex flex-wrap gap-1 text-[13px] font-mono">
-              <span class="bg-chip text-reiHair border border-reiHair px-1.5 py-0.5 rounded"
-                >Serial Experiments Lain</span
-              >
-              <span class="bg-bloodDeep text-reiPupil border border-reiPupil px-1.5 py-0.5 rounded"
-                >Neon Genesis Evangelion</span
-              >
-              <span class="bg-chip text-reiLight border border-reiHair px-1.5 py-0.5 rounded"
-                >Monster</span
-              >
-              <span class="bg-bruiseDeep text-mlpPink border border-mlpPink px-1.5 py-0.5 rounded"
-                >kiki's delivery service</span
-              >
-              <span class="bg-bruiseDeep text-mlpPink border border-mlpPink px-1.5 py-0.5 rounded"
-                >My Little Pony</span
-              >
-            </div>
+        <div class="job p-3 bg-card border border-reiHair rounded text-sm">
+          <div class="flex justify-between items-start gap-2">
+            <h3 class="font-bold text-reiLight text-base font-mono">Software Developer · Freelance</h3>
+            <span class="text-[12px] bg-chip text-reiHair border border-reiHair px-1 font-mono whitespace-nowrap">Jan 2018 – Oct 2022</span>
+          </div>
+          <div class="text-[13px] text-dim font-mono">Full-time</div>
+          <p class="text-reiLight/80 mt-1">APIs and automation tools for B2B clients (auditing, Discord bots, integrations).</p>
+          <ul class="text-reiLight/80">
+            <li>Engineered RESTful APIs and maintained multi-client server environments with NestJS for several B2B platforms.</li>
+            <li>Applied Builder and Specification patterns to audit filtering systems, greatly improving maintainability.</li>
+            <li>Resolved critical infrastructure incidents (Nginx, Certbot SSL, Docker) on Google Cloud with documented, reproducible fixes.</li>
+            <li>Developed custom integrations and Discord automation bots to streamline client workflows.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="web-box">
+      <div class="web-box-header web-box-header-nerv"><span>~ CLASSIFIED PROJECTS / DOSSIERS ~</span><span class="text-[12px] bg-reiPupil text-reiLight px-1">CONFIDENTIAL</span></div>
+      <div class="p-3 space-y-3 bg-panel">
+        <div class="p-3 bg-card border border-reiHair rounded space-y-2">
+          <div class="flex justify-between items-start">
+            <h3 class="font-bold text-reiLight text-base font-mono flex items-center gap-1.5"><i class="fa-solid fa-folder text-reiHair"></i> <a class="card-link hover:text-reiPupil" href="projects/gestini.html">Gestini ERP</a></h3>
+            <span class="text-[12px] bg-chip text-reiHair border border-reiHair px-1 font-mono">CO-FOUNDER</span>
+          </div>
+          <p class="text-sm text-reiLight/80">ERP for inventory control, point-of-sale and automated AFIP/ARCA electronic invoicing in Argentina, with MercadoPago payments and an AI data agent.</p>
+          <div class="flex flex-wrap gap-1 text-[12px] font-mono">
+            <span class="bg-black text-wiredGreen border border-line/50 px-1">NestJS</span>
+            <span class="bg-black text-reiHair border border-line/50 px-1">Electron</span>
+            <span class="bg-black text-reiLight border border-line/50 px-1">React</span>
+            <span class="bg-black text-reiLight/80 border border-line/50 px-1">PostgreSQL</span>
+            <span class="bg-black text-reiLight/80 border border-line/50 px-1">Liquibase</span>
           </div>
         </div>
-
-        <div class="web-box">
-          <div class="web-box-header">
-            <span>~ L/F GAMES ~</span><i class="fa-solid fa-gamepad"></i>
+        <div class="p-3 bg-card border border-reiHair rounded space-y-2">
+          <div class="flex justify-between items-start">
+            <h3 class="font-bold text-reiLight text-base font-mono flex items-center gap-1.5"><i class="fa-solid fa-drafting-compass text-reiHair"></i> <a class="card-link hover:text-reiPupil" href="projects/detail-plumbing.html">Detail Plumbing</a></h3>
+            <span class="text-[12px] bg-chip text-wiredGreen border border-wiredGreen px-1 font-mono">FULLSTACK</span>
           </div>
-          <div class="p-3 text-sm bg-panel">
-            <div class="flex flex-wrap gap-1 text-[13px] font-mono">
-              <span class="bg-card text-reiHair border border-reiHair px-1.5 py-0.5"
-                >Minecraft</span
-              >
-              <span class="bg-card text-reiHair border border-reiHair px-1.5 py-0.5">Valorant</span>
-              <span class="bg-card text-reiHair border border-reiHair px-1.5 py-0.5"
-                >Albion Online</span
-              >
-              <span class="bg-card text-reiHair border border-reiHair px-1.5 py-0.5"
-                >Geometry Dash</span
-              >
-            </div>
+          <p class="text-sm text-reiLight/80">Blueprint tool to measure and trace vector dimensions on architectural PDFs and generate automated quotes, with RBAC and audit log.</p>
+          <div class="flex flex-wrap gap-1 text-[12px] font-mono">
+            <span class="bg-black text-reiLight border border-line/50 px-1">React</span>
+            <span class="bg-black text-reiHair border border-line/50 px-1">Node.js</span>
+            <span class="bg-black text-reiLight/80 border border-line/50 px-1">PDF.js Engine</span>
           </div>
         </div>
-
-        <div class="web-box">
-          <div class="web-box-header">
-            <span>~ L/F MUSIC ~</span><i class="fa-solid fa-music"></i>
+        <div class="p-3 bg-card border border-reiHair rounded space-y-2">
+          <div class="flex justify-between items-start">
+            <h3 class="font-bold text-reiLight text-base font-mono flex items-center gap-1.5"><i class="fa-solid fa-hotel text-mlpPink"></i> <a class="card-link hover:text-reiPupil" href="projects/marvig.html">Marvig Hotel SaaS</a></h3>
+            <span class="text-[12px] bg-bruiseDeep text-mlpPink border border-mlpPink px-1 font-mono">AI SAAS</span>
           </div>
-          <div class="p-3 bg-panel font-mono space-y-1 text-[14px] text-reiLight/80">
-            <div>• Boa (Duvet)</div>
-            <div>• Breakcore / Ambient</div>
-            <div>• Vocaloid / Y2K Pop</div>
-            <div>• 2000s Anime OSTs</div>
-          </div>
-        </div>
-      </aside>
-
-      <section class="lg:col-span-6 space-y-4">
-        <div class="web-box">
-          <div class="web-box-header">
-            <span>~ PROFILE ~</span
-            ><span class="text-[13px] font-mono text-reiHair">UPDATED: 2026.11</span>
-          </div>
-          <div class="p-4 space-y-3 text-sm leading-relaxed bg-panel font-sans">
-            <p class="text-reiLight">
-              Hey, I'm <strong class="font-mono">Victor</strong> (<strong class="font-mono"
-                >Arviixzuh</strong
-              >), a <span class="text-reiHair font-bold underline">Software Engineer</span> with 7+
-              years of experience building maintainable, efficient applications with
-              <strong class="text-wiredGreen font-mono">NestJS</strong> and
-              <strong class="text-wiredGreen font-mono">Spring Boot</strong>, working in Agile/Scrum
-              teams.
-            </p>
-            <p class="text-reiLight/80">
-              Strong technical leadership and communication: I translate business requirements into
-              reliable technical features, apply design patterns for readable, maintainable code,
-              lead end-to-end development cycles, automate CI/CD and optimize cloud infrastructure.
-            </p>
-            <div
-              class="p-2 bg-card border border-reiHair text-[14px] font-mono text-reiLight rounded flex justify-between items-center"
-            >
-              <span
-                ><i class="fa-solid fa-quote-left text-reiPupil"></i> Friendship is magic, backends
-                are deterministic.</span
-              >
-              <span class="psych-scribble text-mlpPink text-sm">Chaos Engine</span>
-            </div>
+          <p class="text-sm text-reiLight/80">Hospitality platform with room reservation calendars, financial telemetry and integrated AI chat support.</p>
+          <div class="flex flex-wrap gap-1 text-[12px] font-mono">
+            <span class="bg-black text-wiredGreen border border-line/50 px-1">NestJS</span>
+            <span class="bg-black text-reiLight border border-line/50 px-1">React</span>
+            <span class="bg-black text-mlpPink border border-line/50 px-1">OpenAI API</span>
           </div>
         </div>
-
-        <div class="web-box">
-          <div class="web-box-header web-box-header-nerv">
-            <span>~ EMPLOYMENT HISTORY / SERVICE RECORD ~</span
-            ><i class="fa-solid fa-briefcase"></i>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <div class="p-2.5 bg-card border border-line rounded space-y-1">
+            <h4 class="text-sm font-bold text-reiLight font-mono"><a class="card-link hover:text-reiPupil" href="projects/litium.html">Litium Ecommerce</a></h4>
+            <p class="text-[13px] text-dim">High-concurrency online catalog store with sync system.</p>
+            <span class="text-[12px] text-reiHair font-mono block">React / NestJS</span>
           </div>
-          <div class="p-3 space-y-3 bg-panel">
-            <div class="job p-3 bg-card border border-reiHair rounded text-sm">
-              <div class="flex justify-between items-start gap-2">
-                <h3 class="font-bold text-reiLight text-base font-mono">Co-Founder · Gestini</h3>
-                <span
-                  class="text-[12px] bg-chip text-wiredGreen border border-wiredGreen px-1 font-mono whitespace-nowrap"
-                  >Jun 2024 – Present</span
-                >
-              </div>
-              <div class="text-[13px] text-dim font-mono">
-                Buenos Aires, Argentina (remote) · Full-time
-              </div>
-              <p class="text-reiLight/80 mt-1">
-                SaaS for administrative management and electronic invoicing for small and
-                medium-sized businesses.
-              </p>
-              <ul class="text-reiLight/80">
-                <li>
-                  Directed strategic decisions on tech stack, infrastructure and long-term technical
-                  roadmap, aligned with business goals.
-                </li>
-                <li>
-                  Designed and implemented direct tax integration with the ARCA (Argentina) API for
-                  compliant electronic invoices.
-                </li>
-                <li>
-                  Built the MercadoPago checkout module: online payments and real-time transaction
-                  updates via webhooks.
-                </li>
-                <li>
-                  Implemented a specialized AI agent for data extraction and analysis, reducing
-                  manual intervention across workflows.
-                </li>
-                <li>
-                  Designed the database architecture and versioned migrations (Liquibase) for safe
-                  evolution in production.
-                </li>
-                <li>Led code reviews and architectural standards across the team.</li>
-                <li>Automated CI/CD pipelines for reproducible production deployments.</li>
-              </ul>
-            </div>
-
-            <div class="job p-3 bg-card border border-reiHair rounded text-sm">
-              <div class="flex justify-between items-start gap-2">
-                <h3 class="font-bold text-reiLight text-base font-mono">
-                  Full-Stack Developer · Detail Plumbing
-                </h3>
-                <span
-                  class="text-[12px] bg-chip text-reiHair border border-reiHair px-1 font-mono whitespace-nowrap"
-                  >Sep 2024 – May 2025</span
-                >
-              </div>
-              <div class="text-[13px] text-dim font-mono">Miami, FL (remote) · Freelance</div>
-              <p class="text-reiLight/80 mt-1">
-                Web platform that restructured the whole quoting and materials-management workflow:
-                no manual steps, centralized blueprint processing.
-              </p>
-              <ul class="text-reiLight/80">
-                <li>
-                  Ran the diagnostic phase through professional interviews, resolving critical
-                  bottlenecks.
-                </li>
-                <li>
-                  Systematized budget and material estimates from digital measurements, cutting
-                  manual errors and processing times.
-                </li>
-                <li>Created precision tools for editing drawings in digital blueprints.</li>
-                <li>Applied RBAC and an audit log for full oversight of project revisions.</li>
-              </ul>
-            </div>
-
-            <div class="job p-3 bg-card border border-reiHair rounded text-sm">
-              <div class="flex justify-between items-start gap-2">
-                <h3 class="font-bold text-reiLight text-base font-mono">
-                  Full-Stack Developer · Dream Junk Studios
-                </h3>
-                <span
-                  class="text-[12px] bg-chip text-reiHair border border-reiHair px-1 font-mono whitespace-nowrap"
-                  >Sep 2022 – May 2024</span
-                >
-              </div>
-              <div class="text-[13px] text-dim font-mono">Miami, FL (remote) · Full-time</div>
-              <p class="text-reiLight/80 mt-1">
-                Technology development, video game development and marketing company.
-              </p>
-              <ul class="text-reiLight/80">
-                <li>
-                  Architected a business management system with an integrated social network,
-                  unifying communication and collaboration.
-                </li>
-                <li>
-                  Built Discord bots that automate workflows and boost community engagement,
-                  reducing operating costs.
-                </li>
-                <li>Worked closely with UI/UX designers to validate and integrate interfaces.</li>
-              </ul>
-            </div>
-
-            <div class="job p-3 bg-card border border-reiHair rounded text-sm">
-              <div class="flex justify-between items-start gap-2">
-                <h3 class="font-bold text-reiLight text-base font-mono">
-                  Software Developer · Freelance
-                </h3>
-                <span
-                  class="text-[12px] bg-chip text-reiHair border border-reiHair px-1 font-mono whitespace-nowrap"
-                  >Jan 2018 – Oct 2022</span
-                >
-              </div>
-              <div class="text-[13px] text-dim font-mono">Full-time</div>
-              <p class="text-reiLight/80 mt-1">
-                APIs and automation tools for B2B clients (auditing, Discord bots, integrations).
-              </p>
-              <ul class="text-reiLight/80">
-                <li>
-                  Engineered RESTful APIs and maintained multi-client server environments with
-                  NestJS for several B2B platforms.
-                </li>
-                <li>
-                  Applied Builder and Specification patterns to audit filtering systems, greatly
-                  improving maintainability.
-                </li>
-                <li>
-                  Resolved critical infrastructure incidents (Nginx, Certbot SSL, Docker) on Google
-                  Cloud with documented, reproducible fixes.
-                </li>
-                <li>
-                  Developed custom integrations and Discord automation bots to streamline client
-                  workflows.
-                </li>
-              </ul>
-            </div>
+          <div class="p-2.5 bg-card border border-line rounded space-y-1">
+            <h4 class="text-sm font-bold text-reiLight font-mono"><a class="card-link hover:text-reiPupil" href="projects/vitalcare.html">Vitalcare Medical</a></h4>
+            <p class="text-[13px] text-dim">Desktop medical records &amp; appointment management suite.</p>
+            <span class="text-[12px] text-reiHair font-mono block">Electron / React</span>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="web-box">
-          <div class="web-box-header web-box-header-nerv">
-            <span>~ CLASSIFIED PROJECTS / DOSSIERS ~</span
-            ><span class="text-[12px] bg-reiPupil text-reiLight px-1">CONFIDENTIAL</span>
-          </div>
-          <div class="p-3 space-y-3 bg-panel">
-            <div class="p-3 bg-card border border-reiHair rounded space-y-2">
-              <div class="flex justify-between items-start">
-                <h3 class="font-bold text-reiLight text-base font-mono flex items-center gap-1.5">
-                  <i class="fa-solid fa-folder text-reiHair"></i>
-                  <a class="card-link hover:text-reiPupil" href="projects/gestini.html"
-                    >Gestini ERP</a
-                  >
-                </h3>
-                <span class="text-[12px] bg-chip text-reiHair border border-reiHair px-1 font-mono"
-                  >CO-FOUNDER</span
-                >
-              </div>
-              <p class="text-sm text-reiLight/80">
-                ERP for inventory control, point-of-sale and automated AFIP/ARCA electronic
-                invoicing in Argentina, with MercadoPago payments and an AI data agent.
-              </p>
-              <div class="flex flex-wrap gap-1 text-[12px] font-mono">
-                <span class="bg-black text-wiredGreen border border-line/50 px-1">NestJS</span>
-                <span class="bg-black text-reiHair border border-line/50 px-1">Electron</span>
-                <span class="bg-black text-reiLight border border-line/50 px-1">React</span>
-                <span class="bg-black text-reiLight/80 border border-line/50 px-1">PostgreSQL</span>
-                <span class="bg-black text-reiLight/80 border border-line/50 px-1">Liquibase</span>
-              </div>
-            </div>
-            <div class="p-3 bg-card border border-reiHair rounded space-y-2">
-              <div class="flex justify-between items-start">
-                <h3 class="font-bold text-reiLight text-base font-mono flex items-center gap-1.5">
-                  <i class="fa-solid fa-drafting-compass text-reiHair"></i>
-                  <a class="card-link hover:text-reiPupil" href="projects/detail-plumbing.html"
-                    >Detail Plumbing</a
-                  >
-                </h3>
-                <span
-                  class="text-[12px] bg-chip text-wiredGreen border border-wiredGreen px-1 font-mono"
-                  >FULLSTACK</span
-                >
-              </div>
-              <p class="text-sm text-reiLight/80">
-                Blueprint tool to measure and trace vector dimensions on architectural PDFs and
-                generate automated quotes, with RBAC and audit log.
-              </p>
-              <div class="flex flex-wrap gap-1 text-[12px] font-mono">
-                <span class="bg-black text-reiLight border border-line/50 px-1">React</span>
-                <span class="bg-black text-reiHair border border-line/50 px-1">Node.js</span>
-                <span class="bg-black text-reiLight/80 border border-line/50 px-1"
-                  >PDF.js Engine</span
-                >
-              </div>
-            </div>
-            <div class="p-3 bg-card border border-reiHair rounded space-y-2">
-              <div class="flex justify-between items-start">
-                <h3 class="font-bold text-reiLight text-base font-mono flex items-center gap-1.5">
-                  <i class="fa-solid fa-hotel text-mlpPink"></i>
-                  <a class="card-link hover:text-reiPupil" href="projects/marvig.html"
-                    >Marvig Hotel</a
-                  >
-                </h3>
-                <span
-                  class="text-[12px] bg-bruiseDeep text-mlpPink border border-mlpPink px-1 font-mono"
-                  >AI</span
-                >
-              </div>
-              <p class="text-sm text-reiLight/80">
-                Hospitality platform with room reservation calendars, financial telemetry and
-                integrated AI chat support.
-              </p>
-              <div class="flex flex-wrap gap-1 text-[12px] font-mono">
-                <span class="bg-black text-wiredGreen border border-line/50 px-1">NestJS</span>
-                <span class="bg-black text-reiLight border border-line/50 px-1">React</span>
-                <span class="bg-black text-mlpPink border border-line/50 px-1">OpenAI API</span>
-              </div>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              <div class="p-2.5 bg-card border border-line rounded space-y-1">
-                <h4 class="text-sm font-bold text-reiLight font-mono">
-                  <a class="card-link hover:text-reiPupil" href="projects/litium.html"
-                    >Litium Ecommerce</a
-                  >
-                </h4>
-                <p class="text-[13px] text-dim">
-                  High-concurrency online catalog store with sync system.
-                </p>
-                <span class="text-[12px] text-reiHair font-mono block">React / NestJS</span>
-              </div>
-              <div class="p-2.5 bg-card border border-line rounded space-y-1">
-                <h4 class="text-sm font-bold text-reiLight font-mono">
-                  <a class="card-link hover:text-reiPupil" href="projects/vitalcare.html"
-                    >Vitalcare Medical</a
-                  >
-                </h4>
-                <p class="text-[13px] text-dim">
-                  Desktop medical records &amp; appointment management suite.
-                </p>
-                <span class="text-[12px] text-reiHair font-mono block">Electron / React</span>
-              </div>
-            </div>
+    <div class="web-box">
+      <div class="web-box-header"><span>~ TECH STACK ~</span><i class="fa-solid fa-code"></i></div>
+      <div class="p-3 text-sm space-y-3 bg-panel font-mono">
+        <div>
+          <div class="text-[13px] text-reiHair font-bold mb-1">BACKEND:</div>
+          <div class="flex flex-wrap gap-1 text-[13px]">
+            <span class="bg-chip text-wiredGreen px-2 py-0.5 border border-wiredGreen font-bold">TypeScript (NestJS)</span>
+            <span class="bg-chip text-wiredGreen px-2 py-0.5 border border-wiredGreen font-bold">Java (Spring Boot)</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Node.js / Express</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Python (Flask)</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">GraphQL</span>
+            <span class="bg-chip text-reiPupil px-2 py-0.5 border border-reiPupil">C</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">WebSockets / Socket.io</span>
           </div>
         </div>
-
-        <div class="web-box">
-          <div class="web-box-header">
-            <span>~ TECH STACK ~</span><i class="fa-solid fa-code"></i>
-          </div>
-          <div class="p-3 text-sm space-y-3 bg-panel font-mono">
-            <div>
-              <div class="text-[13px] text-reiHair font-bold mb-1">BACKEND:</div>
-              <div class="flex flex-wrap gap-1 text-[13px]">
-                <span class="bg-chip text-wiredGreen px-2 py-0.5 border border-wiredGreen font-bold"
-                  >TypeScript (NestJS)</span
-                >
-                <span class="bg-chip text-wiredGreen px-2 py-0.5 border border-wiredGreen font-bold"
-                  >Java (Spring Boot)</span
-                >
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line"
-                  >Node.js / Express</span
-                >
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line"
-                  >Python (Flask)</span
-                >
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">GraphQL</span>
-                <span class="bg-chip text-reiPupil px-2 py-0.5 border border-reiPupil">C</span>
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line"
-                  >WebSockets / Socket.io</span
-                >
-              </div>
-            </div>
-            <div>
-              <div class="text-[13px] text-reiHair font-bold mb-1">FRONTEND:</div>
-              <div class="flex flex-wrap gap-1 text-[13px]">
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-reiHair"
-                  >React.js</span
-                >
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-reiHair">Next.js</span>
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Zustand</span>
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Redux</span>
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-reiHair"
-                  >TailwindCSS</span
-                >
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Sass / CSS</span>
-              </div>
-            </div>
-            <div>
-              <div class="text-[13px] text-reiHair font-bold mb-1">DATABASES &amp; ORMs:</div>
-              <div class="flex flex-wrap gap-1 text-[13px]">
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">PostgreSQL</span>
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">MySQL</span>
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">MongoDB</span>
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Prisma</span>
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Hibernate</span>
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line"
-                  >Spring Data JPA</span
-                >
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Liquibase</span>
-              </div>
-            </div>
-            <div>
-              <div class="text-[13px] text-reiHair font-bold mb-1">INFRA &amp; DEVOPS:</div>
-              <div class="flex flex-wrap gap-1 text-[13px]">
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line"
-                  >GitHub Actions (CI/CD)</span
-                >
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Docker</span>
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Nginx</span>
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line"
-                  >Certbot (SSL)</span
-                >
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line"
-                  >Google Cloud</span
-                >
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">AWS</span>
-              </div>
-            </div>
-            <div>
-              <div class="text-[13px] text-reiHair font-bold mb-1">TESTING &amp; SPECIALIZED:</div>
-              <div class="flex flex-wrap gap-1 text-[13px]">
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Jest</span>
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Mockito</span>
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-reiHair"
-                  >Electron.js</span
-                >
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-reiHair"
-                  >Discord.js</span
-                >
-              </div>
-            </div>
-            <div>
-              <div class="text-[13px] text-reiHair font-bold mb-1">
-                ARCHITECTURE &amp; PATTERNS:
-              </div>
-              <div class="flex flex-wrap gap-1 text-[13px]">
-                <span class="bg-chip text-mlpPink px-2 py-0.5 border border-mlpPink"
-                  >Hexagonal</span
-                >
-                <span class="bg-chip text-mlpPink px-2 py-0.5 border border-mlpPink"
-                  >Clean Architecture</span
-                >
-                <span class="bg-chip text-mlpPink px-2 py-0.5 border border-mlpPink">SOLID</span>
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line"
-                  >Dependency Injection</span
-                >
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Repository</span>
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line"
-                  >DTOs / Mappers</span
-                >
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Builder</span>
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line"
-                  >Specification</span
-                >
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Factory</span>
-                <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Observer</span>
-              </div>
-            </div>
+        <div>
+          <div class="text-[13px] text-reiHair font-bold mb-1">FRONTEND:</div>
+          <div class="flex flex-wrap gap-1 text-[13px]">
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-reiHair">React.js</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-reiHair">Next.js</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Zustand</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Redux</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-reiHair">TailwindCSS</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Sass / CSS</span>
           </div>
         </div>
-      </section>
-
-      <aside class="lg:col-span-3 space-y-4">
-        <div class="web-box">
-          <div class="web-box-header"><span>~ SOCIALS ~</span><i class="fa-solid fa-link"></i></div>
-          <div class="p-3 bg-panel font-mono text-sm space-y-2">
-            <a
-              href="https://github.com/Arviixzuh"
-              target="_blank"
-              rel="noopener"
-              class="flex items-center justify-between p-1.5 bg-card border border-reiHair hover:bg-reiHair hover:text-black transition-all"
-              ><span><i class="fa-brands fa-github"></i> GitHub</span
-              ><i class="fa-solid fa-arrow-up-right-from-square text-[13px]"></i
-            ></a>
-            <a
-              href="https://www.linkedin.com/in/arviixzuh"
-              target="_blank"
-              rel="noopener"
-              class="flex items-center justify-between p-1.5 bg-card border border-reiHair hover:bg-reiHair hover:text-black transition-all"
-              ><span><i class="fa-brands fa-linkedin"></i> LinkedIn</span
-              ><i class="fa-solid fa-arrow-up-right-from-square text-[13px]"></i
-            ></a>
-            <a
-              href="https://arviixzuh.vercel.app"
-              target="_blank"
-              rel="noopener"
-              class="flex items-center justify-between p-1.5 bg-card border border-reiHair hover:bg-reiHair hover:text-black transition-all"
-              ><span><i class="fa-solid fa-globe"></i> Portfolio</span
-              ><i class="fa-solid fa-arrow-up-right-from-square text-[13px]"></i
-            ></a>
-            <div class="p-1.5 bg-card border border-line space-y-1">
-              <span class="text-[13px] text-dim block">Direct Email:</span>
-              <div class="flex items-center justify-between text-[14px] text-reiLight">
-                <span class="truncate">arviixzuh@gmail.com</span>
-                <button
-                  onclick="copyMail()"
-                  class="bg-reiHair text-black px-1 text-[12px] font-bold"
-                >
-                  COPY
-                </button>
-              </div>
-            </div>
+        <div>
+          <div class="text-[13px] text-reiHair font-bold mb-1">DATABASES &amp; ORMs:</div>
+          <div class="flex flex-wrap gap-1 text-[13px]">
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">PostgreSQL</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">MySQL</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">MongoDB</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Prisma</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Hibernate</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Spring Data JPA</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Liquibase</span>
           </div>
         </div>
-
-        <div class="web-box">
-          <div class="web-box-header web-box-header-nerv">
-            <span>~ NERV / NAVI LOG ~</span><span class="text-[12px]">CCTV_0926</span>
-          </div>
-          <div class="p-3 bg-panel font-mono text-sm space-y-2">
-            <div class="bg-black p-2 border border-line/50 text-[13px] text-wiredGreen space-y-1">
-              <div>&gt; Sync Ratio: 98.4%</div>
-              <div>&gt; MAGI Agreement: TRUE</div>
-              <div id="live-time" class="text-reiHair">&gt; Timestamp: --:--:--</div>
-            </div>
-            <div class="p-2 bg-bruiseDeep/50 border border-mlpPink text-[13px] text-mlpPink">
-              "Eisler Memorial Hospital File #731 unlocked."
-            </div>
+        <div>
+          <div class="text-[13px] text-reiHair font-bold mb-1">INFRA &amp; DEVOPS:</div>
+          <div class="flex flex-wrap gap-1 text-[13px]">
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">GitHub Actions (CI/CD)</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Docker</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Nginx</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Certbot (SSL)</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Google Cloud</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">AWS</span>
           </div>
         </div>
-
-        <div class="web-box">
-          <div class="web-box-header">
-            <span>~ AUDIO PLAYER ~</span><i class="fa-solid fa-compact-disc"></i>
-          </div>
-          <div class="p-3 bg-panel font-mono text-sm space-y-2 text-center">
-            <div class="text-[14px] text-reiHair font-bold">Duvet - Bôa (Lain OST)</div>
-            <div class="w-full bg-line h-1.5 rounded overflow-hidden">
-              <div class="bg-reiHair h-full w-2/3 animate-pulse"></div>
-            </div>
-            <div class="flex justify-center gap-2 pt-1">
-              <button
-                onclick="playRetroSfx()"
-                class="bg-chip border border-reiHair px-2 py-0.5 text-[13px] hover:bg-reiHair hover:text-black"
-              >
-                ◀◀
-              </button>
-              <button
-                onclick="playRetroSfx()"
-                class="bg-chip border border-reiHair px-3 py-0.5 text-[13px] hover:bg-reiHair hover:text-black"
-              >
-                ▶ PLAY
-              </button>
-              <button
-                onclick="playRetroSfx()"
-                class="bg-chip border border-reiHair px-2 py-0.5 text-[13px] hover:bg-reiHair hover:text-black"
-              >
-                ▶▶
-              </button>
-            </div>
+        <div>
+          <div class="text-[13px] text-reiHair font-bold mb-1">TESTING &amp; SPECIALIZED:</div>
+          <div class="flex flex-wrap gap-1 text-[13px]">
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Jest</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Mockito</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-reiHair">Electron.js</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-reiHair">Discord.js</span>
           </div>
         </div>
-
-        <div class="web-box">
-          <div class="web-box-header">
-            <span>~ Y2K BADGES ~</span><i class="fa-solid fa-certificate"></i>
-          </div>
-          <div class="p-3 bg-panel flex flex-wrap gap-1.5 justify-center">
-            <div class="badge-8831">REI_AYANAMI</div>
-            <div class="badge-8831 text-wiredGreen">LAIN_WIRED</div>
-            <div class="badge-8831 text-mlpPink">MLP:DISCORD</div>
-            <div class="badge-8831 text-reiPupil">NERV_MAGI</div>
+        <div>
+          <div class="text-[13px] text-reiHair font-bold mb-1">ARCHITECTURE &amp; PATTERNS:</div>
+          <div class="flex flex-wrap gap-1 text-[13px]">
+            <span class="bg-chip text-mlpPink px-2 py-0.5 border border-mlpPink">Hexagonal</span>
+            <span class="bg-chip text-mlpPink px-2 py-0.5 border border-mlpPink">Clean Architecture</span>
+            <span class="bg-chip text-mlpPink px-2 py-0.5 border border-mlpPink">SOLID</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Dependency Injection</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Repository</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">DTOs / Mappers</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Builder</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Specification</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Factory</span>
+            <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Observer</span>
           </div>
         </div>
-      </aside>
-    </main>
+      </div>
+    </div>
+  </section>
 
-    <footer
-      class="max-w-7xl w-full mx-auto mt-4 web-box p-2 text-center text-sm font-mono text-reiLight"
-    >
-      Arviixzuh Portfolio
-    </footer>
+  <aside class="lg:col-span-3 space-y-4">
+    <div class="web-box">
+      <div class="web-box-header"><span>~ SOCIALS ~</span><i class="fa-solid fa-link"></i></div>
+      <div class="p-3 bg-panel font-mono text-sm space-y-2">
+        <a href="https://github.com/Arviixzuh" target="_blank" rel="noopener" class="flex items-center justify-between p-1.5 bg-card border border-reiHair hover:bg-reiHair hover:text-black transition-all"><span><i class="fa-brands fa-github"></i> GitHub</span><i class="fa-solid fa-arrow-up-right-from-square text-[13px]"></i></a>
+        <a href="https://www.linkedin.com/in/arviixzuh" target="_blank" rel="noopener" class="flex items-center justify-between p-1.5 bg-card border border-reiHair hover:bg-reiHair hover:text-black transition-all"><span><i class="fa-brands fa-linkedin"></i> LinkedIn</span><i class="fa-solid fa-arrow-up-right-from-square text-[13px]"></i></a>
+        <a href="https://arviixzuh.vercel.app" target="_blank" rel="noopener" class="flex items-center justify-between p-1.5 bg-card border border-reiHair hover:bg-reiHair hover:text-black transition-all"><span><i class="fa-solid fa-globe"></i> Portfolio</span><i class="fa-solid fa-arrow-up-right-from-square text-[13px]"></i></a>
+        <div class="p-1.5 bg-card border border-line space-y-1">
+          <span class="text-[13px] text-dim block">Direct Email:</span>
+          <div class="flex items-center justify-between text-[14px] text-reiLight">
+            <span class="truncate">arviixzuh@gmail.com</span>
+            <button onclick="copyMail()" class="bg-reiHair text-black px-1 text-[12px] font-bold">COPY</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <script>
-      function updateTime() {
-        const el = document.getElementById('live-time')
-        if (el) el.innerText = `> Timestamp: ${new Date().toTimeString().split(' ')[0]}`
-      }
-      setInterval(updateTime, 1000)
-      updateTime()
+    <div class="web-box">
+      <div class="web-box-header web-box-header-nerv"><span>~ NERV / NAVI LOG ~</span><span class="text-[12px]">CCTV_0926</span></div>
+      <div class="p-3 bg-panel font-mono text-sm space-y-2">
+        <div class="bg-black p-2 border border-line/50 text-[13px] text-wiredGreen space-y-1">
+          <div class="radar"></div>
+          <div>&gt; PATTERN: <span class="pattern-blink font-bold"></span></div>
+          <div>&gt; Sync Ratio: 98.4%</div>
+          <div>&gt; MAGI Agreement: TRUE</div>
+          <div id="live-time" class="text-reiHair">&gt; Timestamp: --:--:--</div>
+        </div>
+      </div>
+    </div>
 
-      let audioCtx = null,
-        sfxEnabled = false
-      function playRetroSfx() {
-        sfxEnabled = !sfxEnabled
-        const s = document.getElementById('sfx-status')
-        if (s) s.innerText = sfxEnabled ? 'SFX: ON' : 'SFX: OFF'
-        if (sfxEnabled) {
-          if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)()
-          try {
-            const osc = audioCtx.createOscillator(),
-              gain = audioCtx.createGain(),
-              t = audioCtx.currentTime
-            osc.type = 'sine'
-            osc.frequency.setValueAtTime(600, t)
-            gain.gain.setValueAtTime(0.03, t)
-            gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.1)
-            osc.connect(gain)
-            gain.connect(audioCtx.destination)
-            osc.start()
-            osc.stop(t + 0.1)
-          } catch (e) {}
-        }
-      }
-      function copyMail() {
-        const i = document.createElement('input')
-        i.value = 'arviixzuh@gmail.com'
-        document.body.appendChild(i)
-        i.select()
-        document.execCommand('copy')
-        document.body.removeChild(i)
-        alert('Email copied: arviixzuh@gmail.com')
-      }
-    </script>
-  </body>
+    <div class="web-box">
+      <div class="web-box-header"><span>~ AUDIO PLAYER ~</span><i class="fa-solid fa-compact-disc"></i></div>
+      <div class="p-3 bg-panel font-mono text-sm space-y-2 text-center">
+        <div class="flex items-center justify-center gap-3"><div class="disc"></div><div class="text-[14px] text-reiHair font-bold">Duvet - Bôa (Lain OST)</div></div>
+        <div class="eq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="w-full bg-line h-1.5 rounded overflow-hidden"><div class="bg-reiHair h-full w-2/3 animate-pulse"></div></div>
+        <div class="flex justify-center gap-2 pt-1">
+          <button onclick="playRetroSfx()" class="bg-chip border border-reiHair px-2 py-0.5 text-[13px] hover:bg-reiHair hover:text-black">◀◀</button>
+          <button onclick="playRetroSfx()" class="bg-chip border border-reiHair px-3 py-0.5 text-[13px] hover:bg-reiHair hover:text-black">▶ PLAY</button>
+          <button onclick="playRetroSfx()" class="bg-chip border border-reiHair px-2 py-0.5 text-[13px] hover:bg-reiHair hover:text-black">▶▶</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="web-box">
+      <div class="web-box-header"><span>~ Y2K BADGES ~</span><i class="fa-solid fa-certificate"></i></div>
+      <div class="p-3 bg-panel flex flex-wrap gap-1.5 justify-center">
+        <div class="badge-8831 badge-scroll"><span>REI_AYANAMI // FIRST CHILD //</span></div>
+        <div class="badge-8831 badge-wired text-wiredGreen">LAIN_WIRED</div>
+        <div class="badge-8831 badge-hue">MLP:DISCORD</div>
+        <div class="badge-8831 badge-nerv text-reiPupil">NERV_MAGI</div>
+        <div class="badge-8831 badge-scroll text-wiredGreen"><span>PRESENT DAY, PRESENT TIME</span></div>
+        <div class="badge-8831">ANY BROWSER</div>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<footer class="max-w-7xl w-full mx-auto mt-4 web-box p-2 text-center text-sm font-mono text-reiLight">
+  Eisler Memorial Hospital File #731 unlocked.
+</footer>
+
+<script>
+  function updateTime() {
+    const el = document.getElementById('live-time')
+    if (el) el.innerText = `> Timestamp: ${new Date().toTimeString().split(' ')[0]}`
+  }
+  setInterval(updateTime, 1000); updateTime()
+
+  let audioCtx = null, sfxEnabled = false
+  function playRetroSfx() {
+    sfxEnabled = !sfxEnabled
+    const s = document.getElementById('sfx-status')
+    if (s) s.innerText = sfxEnabled ? 'SFX: ON' : 'SFX: OFF'
+    if (sfxEnabled) {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)()
+      try {
+        const osc = audioCtx.createOscillator(), gain = audioCtx.createGain(), t = audioCtx.currentTime
+        osc.type = 'sine'; osc.frequency.setValueAtTime(600, t)
+        gain.gain.setValueAtTime(0.03, t); gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.1)
+        osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); osc.stop(t + 0.1)
+      } catch (e) {}
+    }
+  }
+  function copyMail() {
+    const i = document.createElement('input')
+    i.value = 'arviixzuh@gmail.com'; document.body.appendChild(i); i.select()
+    document.execCommand('copy'); document.body.removeChild(i)
+    alert('Email copied: arviixzuh@gmail.com')
+  }
+</script>
+</body>
 </html>
