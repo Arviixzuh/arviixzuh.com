@@ -286,8 +286,8 @@
           <div class="p-4 space-y-3 text-sm leading-relaxed bg-panel font-sans">
             <p class="text-reiLight">
               Hey, I'm <strong class="font-mono">Arviixzuh</strong>, a
-              <span class="text-reiHair font-bold underline">Software Engineer</span> focused
-              on building web plataforms using
+              <span class="text-reiHair font-bold underline">Software Engineer</span> focused on
+              building web plataforms using
               <strong class="text-wiredGreen font-mono">NestJS</strong> and
               <strong class="text-wiredGreen font-mono">Spring Boot</strong> within Agile/Scrum
               environments.
@@ -611,7 +611,7 @@
               </div>
             </div>
             <div>
-              <div class="text-[13px] text-reiHair font-bold mb-1">INFRA &amp; DEVOPS:</div>
+              <div class="text-[13px] text-reiHair font-bold mb-1">INFRASTRUCTURE &amp; DEVOPS:</div>
               <div class="flex flex-wrap gap-1 text-[13px]">
                 <span class="bg-chip text-reiLight px-2 py-0.5 border border-line"
                   >GitHub Actions (CI/CD)</span
@@ -628,10 +628,15 @@
               </div>
             </div>
             <div>
-              <div class="text-[13px] text-reiHair font-bold mb-1">TESTING &amp; SPECIALIZED:</div>
+              <div class="text-[13px] text-reiHair font-bold mb-1">UNIT TESTING:</div>
               <div class="flex flex-wrap gap-1 text-[13px]">
                 <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Jest</span>
                 <span class="bg-chip text-reiLight px-2 py-0.5 border border-line">Mockito</span>
+              </div>
+            </div>
+            <div>
+              <div class="text-[13px] text-reiHair font-bold mb-1">SPECIALIZED:</div>
+              <div class="flex flex-wrap gap-1 text-[13px]">
                 <span class="bg-chip text-reiLight px-2 py-0.5 border border-reiHair"
                   >Electron.js</span
                 >
@@ -691,12 +696,14 @@
               ><span><i class="fa-brands fa-linkedin"></i> LinkedIn</span
               ><i class="fa-solid fa-arrow-up-right-from-square text-[13px]"></i
             ></a>
-            <div class="p-1.5 bg-card border border-line space-y-1">
-              <span class="text-[13px] text-dim block">Direct Email:</span>
+            <div
+              class="flex items-center justify-between p-1.5 bg-card border border-reiHair transition-all"
+            >
+              <span><i class="fa fa-envelope"></i> Email</span>
               <div class="flex items-center justify-between text-[14px] text-reiLight">
-                <span class="truncate">arviixzuh@gmail.com</span>
                 <button
                   onclick="copyMail()"
+                  id="copyEmailButton"
                   class="bg-reiHair text-black px-1 text-[12px] font-bold"
                 >
                   COPY
@@ -786,12 +793,21 @@
       updateTime()
       function copyMail() {
         const i = document.createElement('input')
+        const ceb = document.getElementById('copyEmailButton')
+
         i.value = 'arviixzuh@gmail.com'
         document.body.appendChild(i)
         i.select()
         document.execCommand('copy')
         document.body.removeChild(i)
-        alert('Email copied: arviixzuh@gmail.com')
+        if (ceb) {
+          ceb.innerText = 'COPIED'
+          ceb.className = 'bg-wiredGreen text-black px-1 text-[12px] font-bold'
+          setTimeout(() => {
+            ceb.innerText = 'COPY'
+            ceb.className = 'bg-reiHair text-black px-1 text-[12px] font-bold'
+          }, 2000)
+        }
       }
     </script>
     <script type="module" src="/js/includes.js"></script>
